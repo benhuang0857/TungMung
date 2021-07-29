@@ -53,6 +53,12 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
+                                        <a href="{{ route('home') }}">
+                                            使用者
+                                        </a>
+                                        <a href="{{ route('hno3') }}">
+                                            HNO3
+                                        </a>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
