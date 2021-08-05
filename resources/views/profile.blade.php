@@ -32,15 +32,16 @@
                             <input id="dept" class="form-control" name="dept" type="text" value="{{$data['user']->dept}}" placeholder="Department">
                         </div>
                         <div class="form-group row">
-                        <select id="user-status" class="form-control" name="user-status">
-                            @if ($data['status'] == 'ok')
-                            <option value="ok" selected>ok</option>
-                            <option value="ng">ng</option>
-                            @else
-                            <option value="ok">ok</option>
-                            <option value="ng" selected>ng</option>
-                            @endif
-                        </select>
+                            <label for="user-status">status</label>
+                            <select id="user-status" class="form-control" name="user-status">
+                                @if ($data['status'] == 'ok')
+                                <option value="ok" selected>ok</option>
+                                <option value="ng">ng</option>
+                                @else
+                                <option value="ok">ok</option>
+                                <option value="ng" selected>ng</option>
+                                @endif
+                            </select>
                         </div>
                         <div class="form-group row">
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Search</button>

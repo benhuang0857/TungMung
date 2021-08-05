@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\HNO3;
+use App\HF;
 use DB;
 
-class HNO3Controller extends Controller
+class HFController extends Controller
 {
     public function __construct()
     {
@@ -16,7 +16,7 @@ class HNO3Controller extends Controller
 
     public function index()
     {
-        $HNO3 = HNO3::where('created_at', '<', '2021-07-30 13:00:00')->get();
+        $HNO3 = HF::where('created_at', '<', '2021-07-30 13:00:00')->get();
         $resultData = array();
 
         foreach($HNO3 as $item)
@@ -24,6 +24,6 @@ class HNO3Controller extends Controller
             array_push($resultData, $item->capacity);
         }
 
-        return view('hno3')->with('HNO3', json_encode($resultData));
+        return view('hf')->with('HF', json_encode($resultData));
     }
 }

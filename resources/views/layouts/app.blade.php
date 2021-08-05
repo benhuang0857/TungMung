@@ -59,6 +59,9 @@
                                         <a href="{{ route('hno3') }}">
                                             HNO3
                                         </a>
+                                        <a href="{{ route('hf') }}">
+                                            HF
+                                        </a>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
