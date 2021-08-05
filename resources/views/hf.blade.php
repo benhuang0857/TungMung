@@ -32,8 +32,8 @@
                         </thead>
                         <tbody>
                             <td>1</td>
-                            <td>HNO3設備</td>
-                            <td>45.0</td>
+                            <td>HF設備</td>
+                            <td>10.0</td>
                             <td>尚無資料</td>
                             <td>尚無資料</td>
                             <td>尚無資料</td>
