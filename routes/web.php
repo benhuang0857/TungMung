@@ -22,3 +22,5 @@ Route::get('/home/filter', 'HomeController@filter');
 Route::get('/user/edit/{id}', 'HomeController@getUserByID');
 Route::get('/hno3', 'HNO3Controller@index')->name('hno3');
 Route::get('/hf', 'HFController@index')->name('hf');
+Route::get('/concentration', 'ConcentrationController@index')->name('concentration');
+Route::get('/brushrollerelectricity', 'BrushRollerElectricityController@index')->name('brushrollerelectricity');

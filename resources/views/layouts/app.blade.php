@@ -62,6 +62,12 @@
                                         <a href="{{ route('hf') }}">
                                             HF
                                         </a>
+                                        <a href="{{ route('brushrollerelectricity') }}">
+                                            刷輥電流
+                                        </a>
+                                        <a href="{{ route('concentration') }}">
+                                            濃度預測
+                                        </a>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
