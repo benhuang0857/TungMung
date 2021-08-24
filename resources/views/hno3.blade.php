@@ -1,60 +1,55 @@
 @extends('layouts.app')
 
 @section('content')
-<script data-require="jquery@*" data-semver="2.1.1" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script data-require="chart.js@0.2.0" data-semver="0.2.0" src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.js"></script>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="panel panel-default">
-                <div class="panel-heading">HNO3監管用量</div>
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">設備位置</th>
-                            <th scope="col">設備名稱</th>
-                            <th scope="col">即時用量(每15分)</th>
-                            <th scope="col">月累積</th>
-                            <th scope="col">年累積</th>
-                            <th scope="col">分析圖</th>
-                            <th scope="col">警示設定</th>
-                            <th scope="col">報表</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <td>1</td>
-                            <td>HNO3設備</td>
-                            <td>45.0</td>
-                            <td>尚無資料</td>
-                            <td>尚無資料</td>
-                            <td>尚無資料</td>
-                            <td><a href="#">分析圖</a></td>
-                            <td><a href="#">分析圖</a></td>
-                            <td><a href="#">報表</a></td>
-                        </tbody>
-                    </table>
-
-                    <div style="overflow: overlay;">
-                        <canvas id="canvas" height="400" width="2200" style="margin: 10px"></canvas>
-                    </div>
-                </div>
+<h2>HNO3監管用量</h2>
+<div class="panel panel-default">
+    <div class="panel-body">
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
             </div>
-        </div>
+        @endif
+
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">設備位置</th>
+                <th scope="col">設備名稱</th>
+                <th scope="col">即時用量(每15分)</th>
+                <th scope="col">月累積</th>
+                <th scope="col">年累積</th>
+                <th scope="col">分析圖</th>
+                <th scope="col">警示設定</th>
+                <th scope="col">報表</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td>1</td>
+                <td>HNO3設備</td>
+                <td>45.0</td>
+                <td>尚無資料</td>
+                <td>尚無資料</td>
+                <td>尚無資料</td>
+                <td><a href="#">分析圖</a></td>
+                <td><a href="#">分析圖</a></td>
+                <td><a href="#">報表</a></td>
+            </tbody>
+        </table>
     </div>
+</div>
+
+<div style="overflow: overlay;">
+    <canvas id="canvas" height="400" width="2200" style="margin: 10px"></canvas>
 </div>
 
 <form style="display: none">
     <input id="HNO3" type="text" value="{{$HNO3}}">
 </form>
+
+<script data-require="jquery@*" data-semver="2.1.1" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script data-require="chart.js@0.2.0" data-semver="0.2.0" src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.js"></script>
 
 <script>
 var randomScalingFactor = function(){ return Math.round(Math.random()*256)};

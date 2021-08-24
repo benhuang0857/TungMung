@@ -20,6 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/filter', 'HomeController@filter');
 Route::get('/user/edit/{id}', 'HomeController@getUserByID');
+Route::get('/user/create', 'HomeController@createUserPage')->name('cuserpage');
+Route::post('/user/create/submit', 'HomeController@createUser')->name('createuser');
 Route::get('/hno3', 'HNO3Controller@index')->name('hno3');
 Route::get('/hf', 'HFController@index')->name('hf');
 Route::get('/concentration', 'ConcentrationController@index')->name('concentration');
