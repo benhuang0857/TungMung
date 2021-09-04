@@ -23,6 +23,12 @@ Route::get('/user/edit/{id}', 'HomeController@getUserByID');
 Route::get('/user/create', 'HomeController@createUserPage')->name('cuserpage');
 Route::post('/user/create/submit', 'HomeController@createUser')->name('createuser');
 Route::get('/hno3', 'HNO3Controller@index')->name('hno3');
+Route::get('/hno3/{name}', 'HNO3Controller@getOne')->name('onehno3');
 Route::get('/hf', 'HFController@index')->name('hf');
 Route::get('/concentration', 'ConcentrationController@index')->name('concentration');
 Route::get('/brushrollerelectricity', 'BrushRollerElectricityController@index')->name('brushrollerelectricity');
+
+Route::get('/no3_setting', 'NO3Controller@settingPage')->name('no3_setting');
+Route::get('/no3_setting/pass', 'NO3Controller@passSettingPara')->name('no3_setting_pass');
+
+Route::get('/no3_cal', 'NO3Controller@calculate')->name('no3_calculate');

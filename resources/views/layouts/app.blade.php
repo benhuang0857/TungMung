@@ -20,6 +20,8 @@
             color: white !important;
         }
     </style>
+    <script data-require="jquery@*" data-semver="2.1.1" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script data-require="chart.js@0.2.0" data-semver="0.2.0" src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.js"></script>
 
 </head>
 <body>
@@ -37,6 +39,7 @@
 
         <div class="container">
             <div class="row">
+                @auth
                 <div class="col-sm-3">
                     <ul class="nav flex-column side-bar">
                         <li class="nav-item"><a class="dropdown-item" href="{{ route('home') }}">管理用戶</a></li>
@@ -44,7 +47,7 @@
                         <li class="nav-item"><a class="dropdown-item" href="{{ route('hno3') }}">HNO3</a></li>
                         <li class="nav-item"><a class="dropdown-item" href="{{ route('hf') }}">HF</a></li>
                         <li class="nav-item"><a class="dropdown-item" href="{{ route('brushrollerelectricity') }}">刷輥電流</a></li>
-                        <li class="nav-item"><a class="dropdown-item" href="{{ route('concentration') }}">濃度預測</a></li>
+                        <li class="nav-item"><a class="dropdown-item" href="{{ route('no3_setting') }}">NO3濃度設定</a></li>
                         <li class="nav-item"><a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
@@ -56,6 +59,8 @@
                         </form>
                     </ul>
                 </div>
+                @endauth
+                
                 <div class="col-sm-9">
                     @yield('content')
                 </div>

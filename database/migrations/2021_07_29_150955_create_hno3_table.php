@@ -15,9 +15,10 @@ class CreateHno3Table extends Migration
     {
         Schema::create('hno3', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('machine_name');
+            $table->string('location');
             $table->double('capacity')->default(0.0);
-            $table->string('factory_name');
-            $table->string('type')->default('realtime'); // 分為 realtime、month、year
+            //$table->string('type')->default('realtime'); // 分為 realtime、month、year
             $table->timestamps();
         });
     }
