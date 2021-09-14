@@ -24,15 +24,72 @@
                 </tr>
             </thead>
             <tbody>
-                <td>1</td>
-                <td>HF設備</td>
-                <td>10.0</td>
-                <td>尚無資料</td>
-                <td>尚無資料</td>
-                <td>尚無資料</td>
-                <td><a href="#">分析圖</a></td>
-                <td><a href="#">分析圖</a></td>
-                <td><a href="#">報表</a></td>
+                <tr>
+                    <td>1</td>
+                    <td>刷輥電流設備</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td><a href="#">分析圖</a></td>
+                    <td><a href="#">分析圖</a></td>
+                    <td><a href="#">報表</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>刷輥電流設備</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td><a href="#">分析圖</a></td>
+                    <td><a href="#">分析圖</a></td>
+                    <td><a href="#">報表</a></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>刷輥電流設備</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td><a href="#">分析圖</a></td>
+                    <td><a href="#">分析圖</a></td>
+                    <td><a href="#">報表</a></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>刷輥電流設備</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td><a href="#">分析圖</a></td>
+                    <td><a href="#">分析圖</a></td>
+                    <td><a href="#">報表</a></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>刷輥電流設備</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td><a href="#">分析圖</a></td>
+                    <td><a href="#">分析圖</a></td>
+                    <td><a href="#">報表</a></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>刷輥電流設備</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td>尚無資料</td>
+                    <td><a href="#">分析圖</a></td>
+                    <td><a href="#">分析圖</a></td>
+                    <td><a href="#">報表</a></td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -43,45 +100,134 @@
 </div>
 
 <form style="display: none">
-    <input id="HF" type="text" value="{{$BrushRollerElectricity}}">
+    <input id="Converter1" type="text" value="{{$DATA['Converter1']}}">
+    <input id="Converter2" type="text" value="{{$DATA['Converter2']}}">
+    <input id="Converter3" type="text" value="{{$DATA['Converter3']}}">
+    <input id="Converter4" type="text" value="{{$DATA['Converter4']}}">
+    <input id="Converter5" type="text" value="{{$DATA['Converter5']}}">
+    <input id="Converter6" type="text" value="{{$DATA['Converter6']}}">
+    <input id="TLable" type="text" value="{{$DATA['TLable']}}">
 </form>
 
 <script>
-var randomScalingFactor = function(){ return Math.round(Math.random()*256)};
+    var TLable = $('#TLable').val();
 
-    var HNO3 = $('#HF').val();
-    var HNO3str = HNO3.replace('[', '');
-    HNO3str = HNO3str.replace(']', '');
-    var HNO3Arr = HNO3str.split(',');
+    var TLablestr = TLable.replace('[', '');
+    TLablestr = TLablestr.replace(']', '');
+    TLablestr = TLablestr.replaceAll('\"', '');
+    var TLableArr = TLablestr.split(',');
+
+    var Converter1 = $('#Converter1').val();
+    var Converter1str = Converter1.replace('[', '');
+    Converter1str = Converter1str.replace(']', '');
+    Converter1str = Converter1str.replaceAll('\"', '');
+    var Converter1Arr = Converter1str.split(',');
+
+    var Converter2 = $('#Converter2').val();
+    var Converter2str = Converter2.replace('[', '');
+    Converter2str = Converter2str.replace(']', '');
+    Converter2str = Converter2str.replaceAll('\"', '');
+    var Converter2Arr = Converter2str.split(',');
+
+    var Converter3 = $('#Converter3').val();
+    var Converter3str = Converter3.replace('[', '');
+    Converter3str = Converter3str.replace(']', '');
+    Converter3str = Converter3str.replaceAll('\"', '');
+    var Converter3Arr = Converter3str.split(',');
+
+    var Converter4 = $('#Converter4').val();
+    var Converter4str = Converter4.replace('[', '');
+    Converter4str = Converter4str.replace(']', '');
+    Converter4str = Converter4str.replaceAll('\"', '');
+    var Converter4Arr = Converter4str.split(',');
+
+    var Converter5 = $('#Converter5').val();
+    var Converter5str = Converter5.replace('[', '');
+    Converter5str = Converter5str.replace(']', '');
+    Converter5str = Converter5str.replaceAll('\"', '');
+    var Converter5Arr = Converter5str.split(',');
+
+    var Converter6 = $('#Converter6').val();
+    var Converter6str = Converter6.replace('[', '');
+    Converter6str = Converter6str.replace(']', '');
+    Converter6str = Converter6str.replaceAll('\"', '');
+    var Converter6Arr = Converter6str.split(',');
 
     var lineChartData = {
-        labels : ["00:15","00:30","00:45","01:00",
-                "01:15","01:30","01:45","02:00",
-                "02:15","02:30","02:45","02:00",
-                "03:15","03:30","03:45","03:00",
-                "04:15","04:30","04:45","04:00",
-                "05:15","05:30","05:45","05:00",
-                "06:15","06:30","06:45","06:00",
-                "07:15","07:30","07:45","07:00",
-                "08:15","08:30","08:45","08:00",
-                "09:15","09:30","09:45","09:00",
-                "10:15","10:30","10:45","11:00",
-                "11:15","11:30","11:45","12:00",
-                "12:15","12:30","12:45","13:00"],
+        labels : TLableArr,
         datasets : [
             {
                 label: "Hourly dataset",
                 fillColor : "rgba(200,187,205,0.2)",
                 strokeColor : "rgba(200,187,205,1)",
                 pointColor : "rgba(200,187,205,1)",
-                pointStrokeColor : "#fff", 
+                pointStrokeColor : "#fff",
                 pointHighlightFill : "#fff",
                 pointHighlightStroke : "rgba(151,187,205,1)",
-                data : HNO3Arr
+                data : Converter1Arr
             }
         ]
-
     };
+
+    var newDataset = {
+        label: "Hourly dataset",
+        fillColor : "rgba(200,187,205,0.2)",
+        strokeColor : "blue",
+        pointColor : "rgba(200,187,205,1)",
+        pointStrokeColor : "#fff", 
+        pointHighlightFill : "#fff",
+        pointHighlightStroke : "rgba(151,187,205,1)",
+        data: Converter2Arr,
+    };
+    lineChartData.datasets.push(newDataset);
+
+    var newDataset = {
+        label: "Hourly dataset",
+        fillColor : "rgba(200,187,205,0.2)",
+        strokeColor : "yellow",
+        pointColor : "rgba(200,187,205,1)",
+        pointStrokeColor : "#fff", 
+        pointHighlightFill : "#fff",
+        pointHighlightStroke : "rgba(151,187,205,1)",
+        data: Converter3Arr,
+    };
+    lineChartData.datasets.push(newDataset);
+
+    var newDataset = {
+        label: "Hourly dataset",
+        fillColor : "rgba(200,187,205,0.2)",
+        strokeColor : "green",
+        pointColor : "rgba(200,187,205,1)",
+        pointStrokeColor : "#fff", 
+        pointHighlightFill : "#fff",
+        pointHighlightStroke : "rgba(151,187,205,1)",
+        data: Converter4Arr,
+    };
+    lineChartData.datasets.push(newDataset);
+
+    var newDataset = {
+        label: "Hourly dataset",
+        fillColor : "rgba(200,187,205,0.2)",
+        strokeColor : "red",
+        pointColor : "rgba(200,187,205,1)",
+        pointStrokeColor : "#fff", 
+        pointHighlightFill : "#fff",
+        pointHighlightStroke : "rgba(151,187,205,1)",
+        data: Converter5Arr,
+    };
+    lineChartData.datasets.push(newDataset);
+
+    var newDataset = {
+        label: "Hourly dataset",
+        fillColor : "rgba(200,187,205,0.2)",
+        strokeColor : "black",
+        pointColor : "rgba(200,187,205,1)",
+        pointStrokeColor : "#fff", 
+        pointHighlightFill : "#fff",
+        pointHighlightStroke : "rgba(151,187,205,1)",
+        data: Converter6Arr,
+    };
+    lineChartData.datasets.push(newDataset);
 		
 	window.onload = function(){
 		var ctx = document.getElementById("canvas").getContext("2d");
