@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class HNO3 extends Model
 {
-    protected $table = 'hno3';
+    protected $table = 'hno3_view';
 }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HF extends Model
+class HFDaily extends Model
 {
-    protected $table = 'hf_view';
+    protected $table = 'hf_daily_view';
 }

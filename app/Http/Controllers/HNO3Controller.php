@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\HNO3;
+use App\HNO3Daily;
 use DB;
 
 class HNO3Controller extends Controller
@@ -16,52 +17,46 @@ class HNO3Controller extends Controller
 
     public function index()
     {
-        $output = "";
+        $HNO3 = HNO3::where('date_time', '<=' , date('y-m-d', strtotime('+1 days')))
+        ->where('date_time', '>=' , date('y-m-d', strtotime('+0 days')))->get();
 
-        $HNO3 = HNO3::all();
-        $all_machine_name = DB::select('select distinct(machine_name) from hno3');
-        $all_location = DB::select('select distinct(location) from hno3');
+        $HNO3Daily = HNO3Daily::where('Day', '<', date("Y-m-t", strtotime(date("Y-m-d"))) )
+                          ->where('Day', '>=', date("Y-m-01", strtotime(date("Y-m-d"))) )->get();
 
-        foreach($all_machine_name as $name)
-        {
-            $value = DB::select('select capacity from hno3 as T where T.machine_name="'.$name->machine_name.'"');
-            
-            $result = "";
-            foreach($value as $data)
-            {
-                $result .= $data->capacity.',';
-            }
-            
-            $output .= '<input class="HNO3" type="text" value="'.$result.'">';
-        }
-
-        $resultdata = [
-            'output' => $output,
-            'all_machine_name' => $all_machine_name,
-            'all_location' => $all_location
-        ];
-        return view('hno3')->with('Output', $resultdata);
-    }
-
-    public function getOne($name)
-    {
-        $machine_name = $name;
-        $output = "";
-
-        $value = HNO3::where('machine_name', $machine_name)->get();
-            
-        $result = "";
-        foreach($value as $data)
-        {
-            $result .= $data->capacity.',';
-        }
         
-        $output .= '<input class="HNO3" type="text" value="'.$result.'">';
+        $HNO3Year = HNO3Daily::where('Day', '<', date("Y-m-t", strtotime(date("Y-m-d"))) )
+                            ->where('Day', '>=', date("Y").'-01-01' )->get();
 
-        $resultdata = [
-            'name' => $name,
-            'output' => $output
+        $resultData = array();
+        $resultTimeLabe = array();
+
+        foreach($HNO3 as $item)
+        {
+            array_push($resultData, $item->HNO3);
+            array_push($resultTimeLabe, $item->date_time);
+        }
+
+        //當月累積
+        $resultHNO3Month = 0;
+        foreach($HNO3Daily as $day)
+        {
+            $resultHNO3Month += $day->HNO3;
+        }
+
+        //當年累積
+        $resultHNO3Year = 0;
+        foreach($HNO3Year as $day)
+        {
+            $resultHNO3Year += $day->HNO3;
+        }
+
+        $data = [
+            'HNO3'     => json_encode($resultData),
+            'TLable'   => json_encode($resultTimeLabe),
+            'HNO3Month'=> $resultHNO3Month,
+            'HNO3Year' => $resultHNO3Year
         ];
-        return view('onehno3')->with('Output', $resultdata);
+
+        return view('hno3')->with('DATA', $data);
     }
 }
