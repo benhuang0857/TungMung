@@ -111,7 +111,6 @@
 
 <script>
     var TLable = $('#TLable').val();
-
     var TLablestr = TLable.replace('[', '');
     TLablestr = TLablestr.replace(']', '');
     TLablestr = TLablestr.replaceAll('\"', '');
@@ -222,13 +221,13 @@
         fillColor : "rgba(200,187,205,0.2)",
         strokeColor : "black",
         pointColor : "rgba(200,187,205,1)",
-        pointStrokeColor : "#fff", 
+        pointStrokeColor : "#fff",
         pointHighlightFill : "#fff",
         pointHighlightStroke : "rgba(151,187,205,1)",
         data: Converter6Arr,
     };
     lineChartData.datasets.push(newDataset);
-		
+
 	window.onload = function(){
 		var ctx = document.getElementById("canvas").getContext("2d");
 		window.myLine = new Chart(ctx);

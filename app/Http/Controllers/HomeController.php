@@ -94,4 +94,31 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+
+    public function delete($id)
+    {
+        $user = User::where('id', $id)->first();
+        $user->delete();
+        return redirect()->back();
+    }
+
+    public function editSubmit(Request $req)
+    {
+        $id = $req->input('id');
+
+        $user = User::where('id', $id)->first();
+        $user->name = $req->input('user-name');
+        $user->email = $req->input('user-email');
+        $user->employeeid = $req->input('employeeid');
+        $user->dept = $req->input('dept');
+        $user->status = $req->input('user-status');
+
+        //dd($req->input('password'));
+        if($req->input('password') != null)
+        {
+            $user->password = bcrypt($req->input('password'));
+        }
+        $user->save();
+        return redirect()->back();
+    }
 }

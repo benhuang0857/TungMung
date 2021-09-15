@@ -41,9 +41,15 @@
                     <td>{{$user->name}}</td>
                     <td>{{$user->employeeid}}</td>
                     <td>{{$user->dept}}</td>
-                    <td>{{$user->status}}</td>
-                    <td><a href="/user/edit/{{$user->id}}">管理</a></td>
-                    <td><a href="/user/delete/{{$user->id}}">刪除</a></td>
+                    <td>
+                        @if ($user->status == 'ok')
+                            <i class="fa fa-check-circle" style="color: green" aria-hidden="true"></i>
+                        @else
+                            <i class="fa fa-times" style="color: red" aria-hidden="true"></i>
+                        @endif
+                    </td>
+                    <td><a class="btn btn-primary" href="/user/edit/{{$user->id}}">管理</a></td>
+                    <td><a class="btn btn-danger" href="/user/delete/{{$user->id}}">刪除</a></td>
                 </tr>
                 @endforeach
             </tbody>

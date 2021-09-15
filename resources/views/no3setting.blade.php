@@ -8,7 +8,7 @@
         <form method="GET" action="{{route('no3_setting_pass')}}" style="padding: 10px">
             {{ csrf_field() }}
             <div class="form-group row">
-                <label for="C0">C0</label>
+                <label for="C0">C0(g/L)</label>
                 <input id="C0" class="form-control" name="C0" type="number" step="0.01">
             </div>
             <div class="form-group row">
@@ -24,11 +24,11 @@
                 <input id="HF_auto_para" class="form-control" name="HF_auto_para" type="number" step="0.01">
             </div>
             <div class="form-group row">
-                <label for="line_speed">線速</label>
+                <label for="line_speed">線速(M/m)</label>
                 <input id="line_speed" class="form-control" name="line_speed" type="number" step="0.01">
             </div>
             <div class="form-group row">
-                <label for="board_width">版寬</label>
+                <label for="board_width">板寬(mm)</label>
                 <input id="board_width" class="form-control" name="board_width" type="number" step="0.01">
             </div>
             <div class="form-group row">

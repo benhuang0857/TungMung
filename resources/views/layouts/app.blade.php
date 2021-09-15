@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>東盟</title>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
@@ -31,9 +31,23 @@
                 <div class="navbar-header">
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        東盟線上系統
                     </a>
                 </div>
+
+                <ul style="float: right; position: relative; top:15px; list-style: none;">
+                    <li class="nav-item"><a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                        <i style="color: white; font-size:20px" class="fa fa-sign-out" aria-hidden="true">登出</i>
+                    </a></li>
+    
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+    
+                </ul>
+
             </div>
         </nav>
 
@@ -42,21 +56,12 @@
                 @auth
                 <div class="col-sm-3">
                     <ul class="nav flex-column side-bar">
-                        <li class="nav-item"><a class="dropdown-item" href="{{ route('home') }}">管理用戶</a></li>
-                        <li class="nav-item"><a class="dropdown-item" href="{{ route('cuserpage') }}">創建用戶</a></li>
-                        <li class="nav-item"><a class="dropdown-item" href="{{ route('hno3') }}">HNO3</a></li>
-                        <li class="nav-item"><a class="dropdown-item" href="{{ route('hf') }}">HF</a></li>
-                        <li class="nav-item"><a class="dropdown-item" href="{{ route('brushrollerelectricity') }}">刷輥電流</a></li>
-                        <li class="nav-item"><a class="dropdown-item" href="{{ route('no3_setting') }}">NO3濃度設定</a></li>
-                        <li class="nav-item"><a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
-                            Logout
-                        </a></li>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
+                        <li class="nav-item" id="home"><a class="dropdown-item" href="{{ route('home') }}">管理用戶</a></li>
+                        <li class="nav-item" id="user"><a class="dropdown-item" href="{{ route('cuserpage') }}">創建用戶</a></li>
+                        <li class="nav-item" id="hno3"><a class="dropdown-item" href="{{ route('hno3') }}">HNO3</a></li>
+                        <li class="nav-item" id="hf"><a class="dropdown-item" href="{{ route('hf') }}">HF</a></li>
+                        <li class="nav-item" id="brushrollerelectricity"><a class="dropdown-item" href="{{ route('brushrollerelectricity') }}">刷輥電流</a></li>
+                        <li class="nav-item" id="no3_setting"><a class="dropdown-item" href="{{ route('no3_setting') }}">NO3濃度設定</a></li>
                     </ul>
                 </div>
                 @endauth
@@ -67,10 +72,46 @@
             </div>
         </div>
 
-        
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://use.fontawesome.com/2904db45a9.js"></script>
+
+    <script>
+        var url = window.location.href;
+
+        if(url.split('/')[3] == 'home')
+        {
+            document.getElementById('home').style.backgroundColor  = 'rgb(119, 119, 119)';
+        }
+
+        if(url.split('/')[3] == 'user')
+        {
+            document.getElementById('user').style.backgroundColor  = 'rgb(119, 119, 119)';
+        }
+
+        if(url.split('/')[3] == 'hno3')
+        {
+            document.getElementById('hno3').style.backgroundColor  = 'rgb(119, 119, 119)';
+        }
+
+        if(url.split('/')[3] == 'hf')
+        {
+            document.getElementById('hf').style.backgroundColor  = 'rgb(119, 119, 119)';
+        }
+
+        if(url.split('/')[3] == 'brushrollerelectricity')
+        {
+            document.getElementById('brushrollerelectricity').style.backgroundColor  = 'rgb(119, 119, 119)';
+        }
+
+        if(url.split('/')[3] == 'no3_setting')
+        {
+            document.getElementById('no3_setting').style.backgroundColor  = 'rgb(119, 119, 119)';
+        }
+
+    </script>
+
 </body>
 </html>
