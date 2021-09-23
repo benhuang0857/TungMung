@@ -47,8 +47,16 @@
 <form style="display: none">
     <input id="HF" type="text" value="{{$DATA['HF']}}">
     <input id="TLable" type="text" value="{{$DATA['TLable']}}">
+    <?php
+        try {
+    ?>
     <input id="Top" type="text" value="{{$DATA['Spec']->top}}">
     <input id="Bottom" type="text" value="{{$DATA['Spec']->bottom}}">
+    <?php
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    ?>
 </form>
 
 <script>
