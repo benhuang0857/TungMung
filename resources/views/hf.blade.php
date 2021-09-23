@@ -112,6 +112,23 @@
             }
         });
     }
+    else
+    {
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: frameworks,
+                datasets: [
+                    {
+                        label: 'HF',
+                        borderColor: "blue",
+                        borderWidth: 1,
+                        data: HFArr
+                    }
+                ]
+            }
+        });
+    }
     
 
 </script>
