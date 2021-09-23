@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\HF;
 use App\HFDaily;
+use App\HFSpec;
 use DB;
 
 class HFController extends Controller
@@ -17,7 +18,7 @@ class HFController extends Controller
 
     public function index()
     {
-        $HF = HF::where('datetime', '<=' , date('Y-m-d', strtotime('+1 days')))
+        $HF = HF::where('datetime', '<=' , date('Y-m-d', strtotime('+2 days')))
                   ->where('datetime', '>=' , date('Y-m-d', strtotime('+0 days')))->get();
         
         $HFDaily = HFDaily::where('Day', '<', date("Y-m-t", strtotime(date("Y-m-d"))) )
@@ -25,6 +26,8 @@ class HFController extends Controller
         
         $HFYear = HFDaily::where('Day', '<', date("Y-m-t", strtotime(date("Y-m-d"))) )
                             ->where('Day', '>=', date("Y").'-01-01' )->get();
+        
+        $spec   = HFSpec::orderBy('created_at', 'desc')->first();
 
         $resultData = array();
         $resultTimeLabe = array();
@@ -53,9 +56,45 @@ class HFController extends Controller
             'HF'     => json_encode($resultData),
             'TLable' => json_encode($resultTimeLabe),
             'HFMonth'=> $resultHFMonth,
-            'HFYear' => $resultHFYear
+            'HFYear' => $resultHFYear,
+            'Spec'   => $spec
         ];
 
         return view('hf')->with('DATA', $data);
+    }
+
+    public function showReportDay(Request $req)
+    {
+        $start = $req->start;
+        $end = $req->end;
+
+        if($start == null || $end == null)
+        {
+            $start = date('Y-m-d h:i:s');
+            $end = date('Y-m-d h:i:s');
+        }
+
+        $HF = HF::where('datetime', '<=' , $end)
+                  ->where('datetime', '>=' , $start)->get();
+
+        $data = [
+            'HF' => $HF
+        ];
+        return view('hfreport')->with('DATA', $data);
+    }
+
+    public function setSpecPage()
+    {
+        return view('hfspec');
+    }
+
+    public function submitSpec(Request $req)
+    {
+        $HFSpec = new HFSpec;
+        $HFSpec->top = $req->input('top');
+        $HFSpec->bottom = $req->input('bottom');
+        $HFSpec->save();
+        
+        return redirect()->back();
     }
 }

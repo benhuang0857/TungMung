@@ -17,7 +17,7 @@ class HNO3Controller extends Controller
 
     public function index()
     {
-        $HNO3 = HNO3::where('date_time', '<=' , date('y-m-d', strtotime('+1 days')))
+        $HNO3 = HNO3::where('date_time', '<=' , date('y-m-d', strtotime('+2 days')))
         ->where('date_time', '>=' , date('y-m-d', strtotime('+0 days')))->get();
 
         $HNO3Daily = HNO3Daily::where('Day', '<', date("Y-m-t", strtotime(date("Y-m-d"))) )
@@ -58,5 +58,25 @@ class HNO3Controller extends Controller
         ];
 
         return view('hno3')->with('DATA', $data);
+    }
+
+    public function showReportDay(Request $req)
+    {
+        $start = $req->start;
+        $end = $req->end;
+
+        if($start == null || $end == null)
+        {
+            $start = date('Y-m-d h:i:s');
+            $end = date('Y-m-d h:i:s');
+        }
+
+        $HNO3 = HNO3::where('date_time', '<=' , $end)
+                  ->where('date_time', '>=' , $start)->get();
+
+        $data = [
+            'HNO3' => $HNO3
+        ];
+        return view('hno3report')->with('DATA', $data);
     }
 }

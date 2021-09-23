@@ -96,7 +96,7 @@
 </div>
 
 <div style="overflow: overlay;">
-    <canvas id="canvas" height="400" width="2200" style="margin: 10px"></canvas>
+    <canvas id="canvas" height="1500" width="2200" style="margin: 10px"></canvas>
 </div>
 
 <form style="display: none">
@@ -108,133 +108,96 @@
     <input id="Converter6" type="text" value="{{$DATA['Converter6']}}">
     <input id="TLable" type="text" value="{{$DATA['TLable']}}">
 </form>
-
 <script>
-    var TLable = $('#TLable').val();
-    var TLablestr = TLable.replace('[', '');
-    TLablestr = TLablestr.replace(']', '');
-    TLablestr = TLablestr.replaceAll('\"', '');
-    var TLableArr = TLablestr.split(',');
 
-    var Converter1 = $('#Converter1').val();
-    var Converter1str = Converter1.replace('[', '');
-    Converter1str = Converter1str.replace(']', '');
-    Converter1str = Converter1str.replaceAll('\"', '');
-    var Converter1Arr = Converter1str.split(',');
+var TLable = $('#TLable').val();
+var TLablestr = TLable.replace('[', '');
+TLablestr = TLablestr.replace(']', '');
+TLablestr = TLablestr.replaceAll('\"', '');
+var TLableArr = TLablestr.split(',');
 
-    var Converter2 = $('#Converter2').val();
-    var Converter2str = Converter2.replace('[', '');
-    Converter2str = Converter2str.replace(']', '');
-    Converter2str = Converter2str.replaceAll('\"', '');
-    var Converter2Arr = Converter2str.split(',');
+var Converter1 = $('#Converter1').val();
+var Converter1str = Converter1.replace('[', '');
+Converter1str = Converter1str.replace(']', '');
+Converter1str = Converter1str.replaceAll('\"', '');
+var Converter1Arr = Converter1str.split(',');
 
-    var Converter3 = $('#Converter3').val();
-    var Converter3str = Converter3.replace('[', '');
-    Converter3str = Converter3str.replace(']', '');
-    Converter3str = Converter3str.replaceAll('\"', '');
-    var Converter3Arr = Converter3str.split(',');
+var Converter2 = $('#Converter2').val();
+var Converter2str = Converter2.replace('[', '');
+Converter2str = Converter2str.replace(']', '');
+Converter2str = Converter2str.replaceAll('\"', '');
+var Converter2Arr = Converter2str.split(',');
 
-    var Converter4 = $('#Converter4').val();
-    var Converter4str = Converter4.replace('[', '');
-    Converter4str = Converter4str.replace(']', '');
-    Converter4str = Converter4str.replaceAll('\"', '');
-    var Converter4Arr = Converter4str.split(',');
+var Converter3 = $('#Converter3').val();
+var Converter3str = Converter3.replace('[', '');
+Converter3str = Converter3str.replace(']', '');
+Converter3str = Converter3str.replaceAll('\"', '');
+var Converter3Arr = Converter3str.split(',');
 
-    var Converter5 = $('#Converter5').val();
-    var Converter5str = Converter5.replace('[', '');
-    Converter5str = Converter5str.replace(']', '');
-    Converter5str = Converter5str.replaceAll('\"', '');
-    var Converter5Arr = Converter5str.split(',');
+var Converter4 = $('#Converter4').val();
+var Converter4str = Converter4.replace('[', '');
+Converter4str = Converter4str.replace(']', '');
+Converter4str = Converter4str.replaceAll('\"', '');
+var Converter4Arr = Converter4str.split(',');
 
-    var Converter6 = $('#Converter6').val();
-    var Converter6str = Converter6.replace('[', '');
-    Converter6str = Converter6str.replace(']', '');
-    Converter6str = Converter6str.replaceAll('\"', '');
-    var Converter6Arr = Converter6str.split(',');
+var Converter5 = $('#Converter5').val();
+var Converter5str = Converter5.replace('[', '');
+Converter5str = Converter5str.replace(']', '');
+Converter5str = Converter5str.replaceAll('\"', '');
+var Converter5Arr = Converter5str.split(',');
 
-    var lineChartData = {
-        labels : TLableArr,
-        datasets : [
-            {
-                label: "Hourly dataset",
-                fillColor : "rgba(200,187,205,0.2)",
-                strokeColor : "rgba(200,187,205,1)",
-                pointColor : "rgba(200,187,205,1)",
-                pointStrokeColor : "#fff",
-                pointHighlightFill : "#fff",
-                pointHighlightStroke : "rgba(151,187,205,1)",
-                data : Converter1Arr
-            }
-        ]
-    };
+var Converter6 = $('#Converter6').val();
+var Converter6str = Converter6.replace('[', '');
+Converter6str = Converter6str.replace(']', '');
+Converter6str = Converter6str.replaceAll('\"', '');
+var Converter6Arr = Converter6str.split(',');
 
-    var newDataset = {
-        label: "Hourly dataset",
-        fillColor : "rgba(200,187,205,0.2)",
-        strokeColor : "blue",
-        pointColor : "rgba(200,187,205,1)",
-        pointStrokeColor : "#fff", 
-        pointHighlightFill : "#fff",
-        pointHighlightStroke : "rgba(151,187,205,1)",
-        data: Converter2Arr,
-    };
-    lineChartData.datasets.push(newDataset);
+var ctx = document.getElementById('canvas');
+var frameworks = TLableArr;
 
-    var newDataset = {
-        label: "Hourly dataset",
-        fillColor : "rgba(200,187,205,0.2)",
-        strokeColor : "yellow",
-        pointColor : "rgba(200,187,205,1)",
-        pointStrokeColor : "#fff", 
-        pointHighlightFill : "#fff",
-        pointHighlightStroke : "rgba(151,187,205,1)",
-        data: Converter3Arr,
-    };
-    lineChartData.datasets.push(newDataset);
-
-    var newDataset = {
-        label: "Hourly dataset",
-        fillColor : "rgba(200,187,205,0.2)",
-        strokeColor : "green",
-        pointColor : "rgba(200,187,205,1)",
-        pointStrokeColor : "#fff", 
-        pointHighlightFill : "#fff",
-        pointHighlightStroke : "rgba(151,187,205,1)",
-        data: Converter4Arr,
-    };
-    lineChartData.datasets.push(newDataset);
-
-    var newDataset = {
-        label: "Hourly dataset",
-        fillColor : "rgba(200,187,205,0.2)",
-        strokeColor : "red",
-        pointColor : "rgba(200,187,205,1)",
-        pointStrokeColor : "#fff", 
-        pointHighlightFill : "#fff",
-        pointHighlightStroke : "rgba(151,187,205,1)",
-        data: Converter5Arr,
-    };
-    lineChartData.datasets.push(newDataset);
-
-    var newDataset = {
-        label: "Hourly dataset",
-        fillColor : "rgba(200,187,205,0.2)",
-        strokeColor : "black",
-        pointColor : "rgba(200,187,205,1)",
-        pointStrokeColor : "#fff",
-        pointHighlightFill : "#fff",
-        pointHighlightStroke : "rgba(151,187,205,1)",
-        data: Converter6Arr,
-    };
-    lineChartData.datasets.push(newDataset);
-
-	window.onload = function(){
-		var ctx = document.getElementById("canvas").getContext("2d");
-		window.myLine = new Chart(ctx);
-		myLine.Line(lineChartData, {
-			responsive: true
-		});
-	} 
-
+var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: frameworks,
+            datasets: [
+                {
+                    label: '電流01',
+                    borderColor: "red",
+                    borderWidth: 1,
+                    data: Converter1Arr
+                },
+                {
+                    label: '電流02',
+                    borderColor: "green",
+                    borderWidth: 1,
+                    data: Converter2Arr
+                },
+                {
+                    label: '電流03',
+                    borderColor: "blue",
+                    borderWidth: 1,
+                    data: Converter3Arr
+                },
+                {
+                    label: '電流04',
+                    borderColor: "yellow",
+                    borderWidth: 1,
+                    data: Converter4Arr
+                },
+                {
+                    label: '電流05',
+                    borderColor: "orange",
+                    borderWidth: 1,
+                    data: Converter5Arr
+                },
+                {
+                    label: '電流06',
+                    borderColor: "purple",
+                    borderWidth: 1,
+                    data: Converter6Arr
+                },
+            ]
+        }
+});
 </script>
 @endsection

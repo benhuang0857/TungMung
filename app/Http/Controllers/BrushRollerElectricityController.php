@@ -16,7 +16,7 @@ class BrushRollerElectricityController extends Controller
 
     public function index()
     {
-        $ConverterView = ConverterView::where('date_time', '<=' , date('y-m-d', strtotime('+1 days')))
+        $ConverterView = ConverterView::where('date_time', '<=' , date('y-m-d', strtotime('+2 days')))
                     ->where('date_time', '>=' , date('y-m-d', strtotime('+0 days')))->get();
         //dd($ConverterView);
 

@@ -33,25 +33,29 @@
                 <td>{{$DATA['HFMonth']}}</td>
                 <td>{{$DATA['HFYear']}}</td>
                 <td><a href="#">分析圖</a></td>
-                <td><a href="#">分析圖</a></td>
-                <td><a href="#">報表</a></td>
+                <td><a href="/hf_spec">設定</a></td>
+                <td><a href="/hf_repor">報表</a></td>
             </tbody>
         </table>
     </div>
 </div>
 
 <div style="overflow: overlay;">
-    <canvas id="canvas" height="400" width="2200" style="margin: 10px"></canvas>
+    <canvas id="canvas" height="1500" width="2200" style="margin: 10px"></canvas>
 </div>
 
 <form style="display: none">
     <input id="HF" type="text" value="{{$DATA['HF']}}">
     <input id="TLable" type="text" value="{{$DATA['TLable']}}">
+    <input id="Top" type="text" value="{{$DATA['Spec']->top}}">
+    <input id="Bottom" type="text" value="{{$DATA['Spec']->bottom}}">
 </form>
 
 <script>
     var HF = $('#HF').val();
     var TLable = $('#TLable').val();
+    var Top = $('#Top').val();
+    var Bottom = $('#Bottom').val();
 
     var HFstr = HF.replace('[', '');
     HFstr = HFstr.replace(']', '');
@@ -65,49 +69,42 @@
     TLablestr = TLablestr.replaceAll('\"', '');
     var TLableArr = TLablestr.split(',');
 
-    console.log(TLableArr);
+    var ctx = document.getElementById('canvas');
+    var frameworks = TLableArr; 
 
-    var lineChartData = {
-        labels : TLableArr,
-        datasets : [
-            {
-                label: "Hourly dataset",
-                fillColor : "rgba(200,187,205,0.2)",
-                strokeColor : "rgba(200,187,205,1)",
-                pointColor : "rgba(200,187,205,1)",
-                pointStrokeColor : "#fff",
-                pointHighlightFill : "#fff",
-                pointHighlightStroke : "rgba(151,187,205,1)",
-                data : HFArr
-            }
-        ]        
-    };
+    var top_spec = Array.from({length: HFArr.length}, (_, index) => Top);
+    var bottom_spec = Array.from({length: HFArr.length}, (_, index) => Bottom);
 
-    var spec = new Array();
-    for(var q=1; q <= HFArr.length; q++)
+    if(Top != null)
     {
-        spec.push(1.2);
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: frameworks,
+                datasets: [
+                    {
+                        label: 'HF',
+                        borderColor: "blue",
+                        borderWidth: 1,
+                        data: HFArr
+                    },
+                    {
+                        label: 'Top Spec',
+                        borderColor: "red",
+                        borderWidth: 1,
+                        data: top_spec
+                    },
+                    {
+                        label: 'Bottom Spec',
+                        borderColor: "red",
+                        borderWidth: 1,
+                        data: bottom_spec
+                    }
+                ]
+            }
+        });
     }
-
-    var specDataset = {
-        label: "Hourly dataset",
-        fillColor : "rgba(200,187,205,0.2)",
-        strokeColor : "red",
-        pointColor : "rgba(200,187,205,1)",
-        pointStrokeColor : "#fff", 
-        pointHighlightFill : "#fff",
-        pointHighlightStroke : "rgba(151,187,205,1)",
-        data: spec,
-    };
-    lineChartData.datasets.push(specDataset);
-		
-	window.onload = function(){
-		var ctx = document.getElementById("canvas").getContext("2d");
-		window.myLine = new Chart(ctx);
-		myLine.Line(lineChartData, {
-			responsive: true,
-		});
-	} 
+    
 
 </script>
 @endsection

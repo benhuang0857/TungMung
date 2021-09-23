@@ -34,14 +34,14 @@
                 <td>{{$DATA['HNO3Year']}}</td>
                 <td><a href="#">分析圖</a></td>
                 <td><a href="#">分析圖</a></td>
-                <td><a href="#">報表</a></td>
+                <td><a href="/hno3_repor">報表</a></td>
             </tbody>
         </table>
     </div>
 </div>
 
 <div style="overflow: overlay;">
-    <canvas id="canvas" height="400" width="2200" style="margin: 10px"></canvas>
+    <canvas id="canvas" height="1500" width="2200" style="margin: 10px"></canvas>
 </div>
 
 <form style="display: none">
@@ -65,48 +65,32 @@
     TLablestr = TLablestr.replaceAll('\"', '');
     var TLableArr = TLablestr.split(',');
 
-    console.log(TLableArr);
+    var ctx = document.getElementById('canvas');
+    var frameworks = TLableArr; 
 
-    var lineChartData = {
-        labels : TLableArr,
-        datasets : [
-            {
-                label: "Hourly dataset",
-                fillColor : "rgba(200,187,205,0.2)",
-                strokeColor : "rgba(200,187,205,1)",
-                pointColor : "rgba(200,187,205,1)",
-                pointStrokeColor : "#fff",
-                pointHighlightFill : "#fff",
-                pointHighlightStroke : "rgba(151,187,205,1)",
-                data : HNO3Arr
-            }
-        ]
-    };
+    var spec = Array.from({length: HNO3Arr.length}, (_, index) => 0.2);
 
-    var spec = new Array();
-    for(var q=1; q <= HNO3Arr.length; q++)
-    {
-        spec.push(2);
-    }
+    console.log(spec);
 
-    var specDataset = {
-        label: "Hourly dataset",
-        fillColor : "rgba(200,187,205,0.2)",
-        strokeColor : "red",
-        pointColor : "rgba(200,187,205,1)",
-        pointStrokeColor : "#fff", 
-        pointHighlightFill : "#fff",
-        pointHighlightStroke : "rgba(151,187,205,1)",
-        data: spec,
-    };
-    lineChartData.datasets.push(specDataset);
-		
-	window.onload = function(){
-		var ctx = document.getElementById("canvas").getContext("2d");
-		window.myLine = new Chart(ctx);
-		myLine.Line(lineChartData, {
-			responsive: true
-		});
-	} 
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: frameworks,
+            datasets: [
+                {
+                    label: 'HNO3',
+                    borderColor: "blue",
+                    borderWidth: 1,
+                    data: HNO3Arr
+                },
+                {
+                    label: 'SPEC',
+                    borderColor: "red",
+                    borderWidth: 1,
+                    data: spec
+                }
+            ],
+        }
+    });
 </script>
 @endsection
