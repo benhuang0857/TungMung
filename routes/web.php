@@ -24,9 +24,14 @@ Route::get('/user/edit_submit', 'HomeController@editSubmit');
 Route::get('/user/delete/{id}', 'HomeController@delete');
 Route::get('/user/create', 'HomeController@createUserPage')->name('cuserpage');
 Route::post('/user/create/submit', 'HomeController@createUser')->name('createuser');
+
 Route::get('/hno3', 'HNO3Controller@index')->name('hno3');
 Route::get('/hno3_repor', 'HNO3Controller@showReportDay')->name('hno3_repor');
-Route::get('/hno3/{name}', 'HNO3Controller@getOne')->name('onehno3');
+Route::get('/hno3_spec', 'HNO3Controller@setSpecPage')->name('hno3spec');
+Route::get('/hno3_spec/submit', 'HNO3Controller@submitSpec')->name('setting_hno3spec');
+Route::get('/hno3/showchart', 'HNO3Controller@showChart')->name('hno3showchart');
+//Route::get('/hno3/{name}', 'HNO3Controller@getOne')->name('onehno3');
+
 Route::get('/hf', 'HFController@index')->name('hf');
 Route::get('/hf_spec', 'HFController@setSpecPage')->name('hfspec');
 Route::get('/hf_spec/submit', 'HFController@submitSpec')->name('setting_hfspec');

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2>HNO3監管用量</h2>
+<h2>HNO3監管用量Chart</h2>
 <div class="panel panel-default">
     <div class="panel-body">
         @if (session('status'))
@@ -11,32 +11,20 @@
             </div>
         @endif
 
-        <table class="table">
-            <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">設備位置</th>
-                <th scope="col">設備名稱</th>
-                <th scope="col">即時用量(每15分)</th>
-                <th scope="col">月累積</th>
-                <th scope="col">年累積</th>
-                <th scope="col">分析圖</th>
-                <th scope="col">警示設定</th>
-                <th scope="col">報表</th>
-                </tr>
-            </thead>
-            <tbody>
-                <td>1</td>
-                <td>HNO3設備</td>
-                <td>HNO3設備</td>
-                <td id="15m">尚無資料</td>
-                <td>{{$DATA['HNO3Month']}}</td>
-                <td>{{$DATA['HNO3Year']}}</td>
-                <td><a href="/hno3/showchart">分析圖</a></td>
-                <td><a href="/hno3_spec">設定</a></td>
-                <td><a href="/hno3_repor">報表</a></td>
-            </tbody>
-        </table>
+        <form action="{{route('hno3showchart')}}" method="GET"  style="padding: 15px">
+            <div class="form-group row">
+                <label for="chart_type">選擇區間</label>
+                <select id="chart_type" class="form-control" name="chart_type">
+                    <option value="day">當日</option>
+                    <option value="month">當月</option>
+                    <option value="year">今年度</option>
+                </select>
+            </div>
+            <div class="form-group row">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">篩選</button>
+            </div>
+        </form>
+
     </div>
 </div>
 
@@ -69,8 +57,6 @@
     HNO3str = HNO3str.replace(']', '');
     HNO3str = HNO3str.replaceAll('\"', '');
     var HNO3Arr = HNO3str.split(',');
-
-    document.getElementById("15m").textContent = HNO3Arr[HNO3Arr.length-1];
 
     var TLablestr = TLable.replace('[', '');
     TLablestr = TLablestr.replace(']', '');

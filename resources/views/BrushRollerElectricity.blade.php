@@ -18,76 +18,62 @@
                 <th scope="col">即時用量(每15分)</th>
                 <th scope="col">月累積</th>
                 <th scope="col">年累積</th>
-                <th scope="col">分析圖</th>
-                <th scope="col">警示設定</th>
                 <th scope="col">報表</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>刷輥電流設備</td>
+                    <td>尚無資料</td>
+                    <td>刷輥電流設備01</td>
                     <td>尚無資料</td>
                     <td>尚無資料</td>
                     <td>尚無資料</td>
-                    <td>尚無資料</td>
-                    <td><a href="#">分析圖</a></td>
-                    <td><a href="#">分析圖</a></td>
                     <td><a href="#">報表</a></td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>刷輥電流設備</td>
+                    <td>尚無資料</td>
+                    <td>刷輥電流設備02</td>
                     <td>尚無資料</td>
                     <td>尚無資料</td>
                     <td>尚無資料</td>
-                    <td>尚無資料</td>
-                    <td><a href="#">分析圖</a></td>
-                    <td><a href="#">分析圖</a></td>
                     <td><a href="#">報表</a></td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>刷輥電流設備</td>
+                    <td>尚無資料</td>
+                    <td>刷輥電流設備03</td>
                     <td>尚無資料</td>
                     <td>尚無資料</td>
                     <td>尚無資料</td>
-                    <td>尚無資料</td>
-                    <td><a href="#">分析圖</a></td>
-                    <td><a href="#">分析圖</a></td>
                     <td><a href="#">報表</a></td>
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td>刷輥電流設備</td>
+                    <td>尚無資料</td>
+                    <td>刷輥電流設備04</td>
                     <td>尚無資料</td>
                     <td>尚無資料</td>
                     <td>尚無資料</td>
-                    <td>尚無資料</td>
-                    <td><a href="#">分析圖</a></td>
-                    <td><a href="#">分析圖</a></td>
                     <td><a href="#">報表</a></td>
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td>刷輥電流設備</td>
+                    <td>尚無資料</td>
+                    <td>刷輥電流設備05</td>
                     <td>尚無資料</td>
                     <td>尚無資料</td>
                     <td>尚無資料</td>
-                    <td>尚無資料</td>
-                    <td><a href="#">分析圖</a></td>
-                    <td><a href="#">分析圖</a></td>
                     <td><a href="#">報表</a></td>
                 </tr>
                 <tr>
                     <td>6</td>
-                    <td>刷輥電流設備</td>
+                    <td>尚無資料</td>
+                    <td>刷輥電流設備06</td>
                     <td>尚無資料</td>
                     <td>尚無資料</td>
                     <td>尚無資料</td>
-                    <td>尚無資料</td>
-                    <td><a href="#">分析圖</a></td>
-                    <td><a href="#">分析圖</a></td>
                     <td><a href="#">報表</a></td>
                 </tr>
             </tbody>
