@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('update:tank')->everyMinute();
+        $schedule->command('update:tank')->cron('*/15 * * * * *')->withoutOverlapping();
     }
 
     /**
