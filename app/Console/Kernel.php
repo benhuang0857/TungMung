@@ -24,8 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('update:tank')
-                 ->everyFifteenMinutes();
+        $schedule->command('update:tank')->cron('*/10 * * * * *');
     }
 
     /**
