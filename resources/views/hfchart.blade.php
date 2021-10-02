@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2>HF監管用量</h2>
+<h2>HF監管用量Chart</h2>
 <div class="panel panel-default">
     <div class="panel-body">
         @if (session('status'))
@@ -11,32 +11,20 @@
             </div>
         @endif
 
-        <table class="table">
-            <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">設備位置</th>
-                <th scope="col">設備名稱</th>
-                <th scope="col">即時用量(每15分)</th>
-                <th scope="col">月累積</th>
-                <th scope="col">年累積</th>
-                <th scope="col">分析圖</th>
-                <th scope="col">警示設定</th>
-                <th scope="col">報表</th>
-                </tr>
-            </thead>
-            <tbody>
-                <td>1</td>
-                <td>HF設備</td>
-                <td>HF設備</td>
-                <td id="15m">尚無資料</td>
-                <td>{{$DATA['HFMonth']}}</td>
-                <td>{{$DATA['HFYear']}}</td>
-                <td><a href="/hf/showchart">分析圖</a></td>
-                <td><a href="/hf_spec">設定</a></td>
-                <td><a href="/hf_repor">報表</a></td>
-            </tbody>
-        </table>
+        <form action="{{route('hfshowchart')}}" method="GET"  style="padding: 15px">
+            <div class="form-group row">
+                <label for="chart_type">選擇區間</label>
+                <select id="chart_type" class="form-control" name="chart_type">
+                    <option value="day">當日</option>
+                    <option value="month">當月</option>
+                    <option value="year">今年度</option>
+                </select>
+            </div>
+            <div class="form-group row">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">篩選</button>
+            </div>
+        </form>
+
     </div>
 </div>
 
@@ -60,7 +48,7 @@
 </form>
 
 <script>
-    var HF = $('#HF').val();
+	var HF = $('#HF').val();
     var TLable = $('#TLable').val();
     var Top = $('#Top').val();
     var Bottom = $('#Bottom').val();
@@ -69,8 +57,6 @@
     HFstr = HFstr.replace(']', '');
     HFstr = HFstr.replaceAll('\"', '');
     var HFArr = HFstr.split(',');
-
-    document.getElementById("15m").textContent = HFArr[HFArr.length-1];
 
     var TLablestr = TLable.replace('[', '');
     TLablestr = TLablestr.replace(']', '');
@@ -86,7 +72,7 @@
     if(Top != null)
     {
         var myChart = new Chart(ctx, {
-            type: 'line',
+        type: 'line',
             data: {
                 labels: frameworks,
                 datasets: [
@@ -108,14 +94,14 @@
                         borderWidth: 1,
                         data: bottom_spec
                     }
-                ]
+                ],
             }
         });
     }
     else
     {
         var myChart = new Chart(ctx, {
-            type: 'line',
+        type: 'line',
             data: {
                 labels: frameworks,
                 datasets: [
@@ -125,11 +111,10 @@
                         borderWidth: 1,
                         data: HFArr
                     }
-                ]
+                ],
             }
         });
     }
-    
 
 </script>
 @endsection

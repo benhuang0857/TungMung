@@ -36,10 +36,13 @@ Route::get('/hf', 'HFController@index')->name('hf');
 Route::get('/hf_spec', 'HFController@setSpecPage')->name('hfspec');
 Route::get('/hf_spec/submit', 'HFController@submitSpec')->name('setting_hfspec');
 Route::get('/hf_repor', 'HFController@showReportDay')->name('hf_repor');
+Route::get('/hf/showchart', 'HFController@showChart')->name('hfshowchart');
+
 Route::get('/concentration', 'ConcentrationController@index')->name('concentration');
 Route::get('/brushrollerelectricity', 'BrushRollerElectricityController@index')->name('brushrollerelectricity');
 
-Route::get('/no3_setting', 'NO3Controller@settingPage')->name('no3_setting');
-Route::get('/no3_setting/pass', 'NO3Controller@passSettingPara')->name('no3_setting_pass');
+Route::get('/no3_setting', 'HNO3Controller@settingPage')->name('no3_setting');
+Route::get('/no3_setting/pass', 'HNO3Controller@passSettingPara')->name('no3_setting_pass');
 
-Route::get('/no3_cal', 'NO3Controller@calculate')->name('no3_calculate');
+Route::get('/hno3_cal', 'HNO3Controller@calculate')->name('hno3_calculate');
+Route::get('/hno3_predict', 'HNO3Controller@predictPage')->name('hno3_predict');

@@ -18,7 +18,8 @@ class BrushRollerElectricityController extends Controller
     {
         $ConverterView = ConverterView::where('date_time', '<=' , date('y-m-d', strtotime('+2 days')))
                     ->where('date_time', '>=' , date('y-m-d', strtotime('+0 days')))->get();
-        //dd($ConverterView);
+
+        $ConverterViewLast = ConverterView::first();
 
         $resultData01 = array();
         $resultData02 = array();
@@ -40,6 +41,7 @@ class BrushRollerElectricityController extends Controller
         }
 
         $data = [
+            'Last'           => $ConverterViewLast,
             'Converter1'     => json_encode($resultData01),
             'Converter2'     => json_encode($resultData02),
             'Converter3'     => json_encode($resultData03),

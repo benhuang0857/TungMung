@@ -16,8 +16,6 @@
                 <th scope="col">設備位置</th>
                 <th scope="col">設備名稱</th>
                 <th scope="col">即時用量(每15分)</th>
-                <th scope="col">月累積</th>
-                <th scope="col">年累積</th>
                 <th scope="col">報表</th>
                 </tr>
             </thead>
@@ -26,54 +24,42 @@
                     <td>1</td>
                     <td>尚無資料</td>
                     <td>刷輥電流設備01</td>
-                    <td>尚無資料</td>
-                    <td>尚無資料</td>
-                    <td>尚無資料</td>
+                    <td>{{$DATA['Last']->converter1}}</td>
                     <td><a href="#">報表</a></td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>尚無資料</td>
                     <td>刷輥電流設備02</td>
-                    <td>尚無資料</td>
-                    <td>尚無資料</td>
-                    <td>尚無資料</td>
+                    <td>{{$DATA['Last']->converter2}}</td>
                     <td><a href="#">報表</a></td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>尚無資料</td>
                     <td>刷輥電流設備03</td>
-                    <td>尚無資料</td>
-                    <td>尚無資料</td>
-                    <td>尚無資料</td>
+                    <td>{{$DATA['Last']->converter3}}</td>
                     <td><a href="#">報表</a></td>
                 </tr>
                 <tr>
                     <td>4</td>
                     <td>尚無資料</td>
                     <td>刷輥電流設備04</td>
-                    <td>尚無資料</td>
-                    <td>尚無資料</td>
-                    <td>尚無資料</td>
+                    <td>{{$DATA['Last']->converter4}}</td>
                     <td><a href="#">報表</a></td>
                 </tr>
                 <tr>
                     <td>5</td>
                     <td>尚無資料</td>
                     <td>刷輥電流設備05</td>
-                    <td>尚無資料</td>
-                    <td>尚無資料</td>
-                    <td>尚無資料</td>
+                    <td>{{$DATA['Last']->converter5}}</td>
                     <td><a href="#">報表</a></td>
                 </tr>
                 <tr>
                     <td>6</td>
                     <td>尚無資料</td>
                     <td>刷輥電流設備06</td>
-                    <td>尚無資料</td>
-                    <td>尚無資料</td>
-                    <td>尚無資料</td>
+                    <td>{{$DATA['Last']->converter6}}</td>
                     <td><a href="#">報表</a></td>
                 </tr>
             </tbody>

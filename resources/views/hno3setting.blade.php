@@ -1,28 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>硝酸(NO3)濃度運算公式</h2>
+<h2>硝酸(HNO3)濃度運算公式</h2>
 
 <div class="panel panel-default">
     <div class="panel-body">
         <form method="GET" action="{{route('no3_setting_pass')}}" style="padding: 10px">
             {{ csrf_field() }}
-            <div class="form-group row">
-                <label for="C0">C0(g/L)</label>
-                <input id="C0" class="form-control" name="C0" type="number" step="0.01">
-            </div>
-            <div class="form-group row">
-                <label for="NO3_auto_para">硝酸自動添加參數</label>
-                <input id="NO3_auto_para" class="form-control" name="NO3_auto_para" type="number" step="0.01">
-            </div>
-            <div class="form-group row">
-                <label for="H2O_auto_para">H2O自動添加參數</label>
-                <input id="H2O_auto_para" class="form-control" name="H2O_auto_para" type="number" step="0.01">
-            </div>
-            <div class="form-group row">
-                <label for="HF_auto_para">氫氟酸自動添加參數</label>
-                <input id="HF_auto_para" class="form-control" name="HF_auto_para" type="number" step="0.01">
-            </div>
             <div class="form-group row">
                 <label for="line_speed">線速(M/m)</label>
                 <input id="line_speed" class="form-control" name="line_speed" type="number" step="0.01">
