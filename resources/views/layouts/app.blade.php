@@ -63,6 +63,7 @@
                         <li class="nav-item" id="hf"><a class="dropdown-item" href="{{ route('hf') }}">HF</a></li>
                         <li class="nav-item" id="brushrollerelectricity"><a class="dropdown-item" href="{{ route('brushrollerelectricity') }}">刷輥電流</a></li>
                         <li class="nav-item" id="no3_setting"><a class="dropdown-item" href="{{ route('no3_setting') }}">HNO3濃度設定</a></li>
+                        <li class="nav-item" id="no3_setting"><a class="dropdown-item" href="{{ route('hno3_predict') }}">HNO3濃度預測圖</a></li>
                     </ul>
                 </div>
                 @endauth
