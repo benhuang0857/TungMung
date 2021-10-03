@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>硝酸(HNO3)濃度運算公式</h2>
+<h2>濃度運算公式基礎參數設定</h2>
 
 <div class="panel panel-default">
     <div class="panel-body">

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2>HNO3濃度分析</h2>
+<h2>HF濃度分析</h2>
 <div class="panel panel-default">
     <div class="panel-body">
         @if (session('status'))
@@ -88,7 +88,7 @@
                 <td>{{$DATA['Tank_Last']->tank22_hf}}</td>
                 @endif
                 
-                <td><a href="/hno3_predict_repor">報表</a></td>
+                <td><a href="/hf_predict_repor">報表</a></td>
             </tbody>
         </table>
 

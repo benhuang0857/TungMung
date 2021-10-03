@@ -295,6 +295,8 @@ class HNO3Controller extends Controller
     {
         $HNO3C0 = HNO3C0::all();
 
+        $Tank_Last = Tank::orderBy('create_date', 'desc')->first();
+
         $tank11_resultData = array();
         $tank12_resultData = array();
         $tank22_resultData = array();
@@ -313,10 +315,108 @@ class HNO3Controller extends Controller
             'tank12C0'     => json_encode($tank12_resultData),
             'tank22C0'     => json_encode($tank22_resultData),
             'TLable'       => json_encode($resultTimeLabe),
+            'Tank_Last'    => $Tank_Last
+        ];
+        return view('hno3predict')->with('DATA', $data);
+    }
+
+    public function showPredictReportDay(Request $req)
+    {
+        $start = $req->start;
+        $end = $req->end;
+
+        if($start == null || $end == null)
+        {
+            $start = date('Y-m-d h:i:s');
+            $end = date('Y-m-d h:i:s');
+        }
+
+        $HNO3 = HNO3C0::where('created_at', '<=' , $end)
+                  ->where('created_at', '>=' , $start)->get();
+
+        $data = [
+            'HNO3' => $HNO3
+        ];
+        return view('hno3predictreport')->with('DATA', $data);
+    }
+
+    public function predict8HPage(Request $req)
+    {
+        $C0 = $req->C0;
+        $TankNum = $req->tanknum;
+
+        $Tank = Tank::orderBy('create_date', 'desc')->first();
+        $HNO3Setting = HNO3ParaSetting::orderBy('created_at', 'desc')->first();
+
+        //設定第一次的C0
+        $tankC0 = $C0;
+
+        //不會自動變化
+        $line_speed = $HNO3Setting->line_speed;
+        $board_width = $HNO3Setting->board_width;
+        $add_time = $HNO3Setting->add_time;
+        $K1 = $HNO3Setting->K1;
+        $K2 = $HNO3Setting->K2;
+        $K3 = $HNO3Setting->K3;
+        $N_plus = $HNO3Setting->N_plus;
+        $W_plus = $HNO3Setting->W_plus;
+        $F_plus = $HNO3Setting->F_plus;
+        $V0 = $HNO3Setting->V0;
+
+        if($TankNum == "tank11")
+        {
+            $tank_HNO3_auto_para = round($Tank->tank11_hno3);
+            $tank_H2O_auto_para = round($Tank->tank11_h2o);
+            $tank_HF_auto_para = round($Tank->tank11_hf);
+        }
+        if($TankNum == "tank12")
+        {
+            $tank_HNO3_auto_para = round($Tank->tank12_hno3);
+            $tank_H2O_auto_para = round($Tank->tank12_h2o);
+            $tank_HF_auto_para = round($Tank->tank12_hf);
+        }
+        if($TankNum == "tank22")
+        {
+            $tank_HNO3_auto_para = round($Tank->tank22_hno3);
+            $tank_H2O_auto_para = round($Tank->tank22_h2o);
+            $tank_HF_auto_para = round($Tank->tank22_hf);
+        }
+        
+        $current_time = date("Y-m-d H:i:s");
+
+        $TLableArr = array();
+        $TankResultArr = array();
+
+        for($i=1; $i<=32; $i++)
+        {
+            array_push($TLableArr, date('Y-m-d H:i:s',strtotime('+15 minutes',strtotime($current_time))));
+            $current_time = date('Y-m-d H:i:s',strtotime('+15 minutes',strtotime($current_time)));
+            /**
+             * 運算開始...
+             * 求N = 硝酸自動添加參數×線速(M/m)×板寬(mm)×添加時間(5min)×k1
+             * 求W = H2O自動添加參數×線速(M/m)×板寬(mm)×添加時間(5min)×k2
+             * 求F = 氫氟酸自動添加參數×線速(M/m)×板寬(mm)×添加時間(5min)×k3
+             * C1 = 結果參照說明公式
+             */
+            
+            $tank_N = $tank_HNO3_auto_para*$line_speed*$board_width*$add_time*$K1;
+            $tank_W = $tank_H2O_auto_para*$line_speed*$board_width*$add_time*$K2;
+            $tank_F = $tank_HF_auto_para*$line_speed*$board_width*$add_time*$K3;
+
+            $tank_C1 = (830*($tank_N + $N_plus) + $tankC0*$V0)/( $V0 + ($tank_N + $N_plus) + ($tank_F + $F_plus) + ($tank_W + $W_plus) );
+            //$tank_C1 = round($tank_C1, 2);
+
+            array_push($TankResultArr, $tank_C1);
+
+            $tankC0 = $tank_C1;
+        }
+
+        $data = [
+            'TLable' => json_encode($TLableArr),
+            'TankResult' => json_encode($TankResultArr),
+            'HNO3Setting' => $HNO3Setting
         ];
 
-        //dd($data);
-
-        return view('hno3predict')->with('DATA', $data);
+        return view('hno3predict8h')->with('DATA', $data);
     }
 }

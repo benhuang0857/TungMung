@@ -46,3 +46,13 @@ Route::get('/no3_setting/pass', 'HNO3Controller@passSettingPara')->name('no3_set
 
 Route::get('/hno3_cal', 'HNO3Controller@calculate')->name('hno3_calculate');
 Route::get('/hno3_predict', 'HNO3Controller@predictPage')->name('hno3_predict');
+Route::get('/hno3_predict_repor', 'HNO3Controller@showPredictReportDay')->name('hno3_predict_repor');
+Route::get('/hno3_predict_8h', 'HNO3Controller@predict8HPage')->name('hno3_predict_8h');
+
+Route::get('/hf_cal', 'HFController@calculate')->name('hf_calculate');
+Route::get('/hf_predict', 'HFController@predictPage')->name('hf_predict');
+Route::get('/hf_predict_repor', 'HFController@showPredictReportDay')->name('hf_predict_repor');
+Route::get('/hf_predict_8h', 'HFController@predict8HPage')->name('hf_predict_8h');
+
+//Route::get('/hf_setting', 'HFController@settingPage')->name('hf_setting');
+//Route::get('/hf_setting/pass', 'HFController@passSettingPara')->name('hf_setting_pass');

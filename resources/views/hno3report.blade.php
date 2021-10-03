@@ -10,7 +10,7 @@
                 {{ session('status') }}
             </div>
         @endif
-        <form action="{{route('hf_repor')}}" method="GET"  style="padding: 15px">
+        <form action="{{route('hno3_repor')}}" method="GET"  style="padding: 15px">
             <div class="form-group row">
                 <input type="date" class="form-control" id="date" name="start">
             </div>
@@ -35,8 +35,8 @@
                 @foreach ($DATA['HNO3'] as $item)
                 <tr>
                 <td>{{$i}}</td>
-                <td>{{$item->HF}}</td>
-                <td>{{$item->datetime}}</td>
+                <td>{{$item->HNO3}}</td>
+                <td>"{{$item->date_time}}"</td>
                 </tr>
                 <?php $i++ ?>
                 @endforeach

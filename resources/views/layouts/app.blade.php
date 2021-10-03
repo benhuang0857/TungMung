@@ -62,8 +62,11 @@
                         <li class="nav-item" id="hno3"><a class="dropdown-item" href="{{ route('hno3') }}">HNO3</a></li>
                         <li class="nav-item" id="hf"><a class="dropdown-item" href="{{ route('hf') }}">HF</a></li>
                         <li class="nav-item" id="brushrollerelectricity"><a class="dropdown-item" href="{{ route('brushrollerelectricity') }}">刷輥電流</a></li>
-                        <li class="nav-item" id="no3_setting"><a class="dropdown-item" href="{{ route('no3_setting') }}">HNO3濃度設定</a></li>
-                        <li class="nav-item" id="no3_setting"><a class="dropdown-item" href="{{ route('hno3_predict') }}">HNO3濃度預測圖</a></li>
+                        <li class="nav-item" id="no3_setting"><a class="dropdown-item" href="{{ route('no3_setting') }}">濃度公式參數設定</a></li>
+                        <li class="nav-item" id="hno3_predict"><a class="dropdown-item" href="{{ route('hno3_predict') }}">HNO3濃度預測圖</a></li>
+                        <li class="nav-item" id="hno3_predict_8h"><a class="dropdown-item" href="/hno3_predict_8h?C0=0&tanknum=tank11">HNO3區間濃度預估</a></li>
+                        <li class="nav-item" id="hf_predict"><a class="dropdown-item" href="{{ route('hf_predict') }}">HF濃度預測圖</a></li>
+                        <li class="nav-item" id="hf_predict_8h"><a class="dropdown-item" href="/hf_predict_8h?C0=0&tanknum=tank11">HF區間濃度預估</a></li>
                     </ul>
                 </div>
                 @endauth
@@ -113,6 +116,19 @@
             document.getElementById('no3_setting').style.backgroundColor  = 'rgb(119, 119, 119)';
         }
 
+        if(url.split('/')[3] == 'hno3_predict')
+        {
+            document.getElementById('hno3_predict').style.backgroundColor  = 'rgb(119, 119, 119)';
+        }
+
+
+        var tmp = url.split('/')[3];
+        var predicturl = tmp.split('?')
+        if(predicturl[0] == 'hno3_predict_8h')
+        {
+            document.getElementById('hno3_predict_8h').style.backgroundColor  = 'rgb(119, 119, 119)';
+        }
+
     </script>
 
     <script>
@@ -120,7 +136,7 @@
             var elt = document.getElementById('tbl_exporttable_to_xls');
             var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
             return dl ?
-            XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+            XLSX.write(wb, { bookType: type, bookSST: true, type: 'text' }):
             XLSX.writeFile(wb, fn || ('DATA.' + (type || 'xlsx')));
         }
     </script>
