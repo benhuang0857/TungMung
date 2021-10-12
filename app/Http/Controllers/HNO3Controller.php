@@ -37,11 +37,27 @@ class HNO3Controller extends Controller
         $resultData = array();
         $resultTimeLabe = array();
 
+        // foreach($HNO3 as $item)
+        // {
+        //     array_push($resultData, $item->HNO3);
+        //     array_push($resultTimeLabe, $item->date_time);
+        // }
+
         foreach($HNO3 as $item)
         {
-            array_push($resultData, $item->HNO3);
             array_push($resultTimeLabe, $item->date_time);
         }
+
+        $j = 0;
+        for($i=1; $i < sizeof($HNO3); $i++)
+        {
+            array_push($resultData, abs($HNO3[$i]->HNO3 - $HNO3[$j]->HNO3));
+            $j++;
+        }
+
+        array_shift($resultData);
+        array_shift($resultTimeLabe);
+
 
         //當月累積
         $resultHNO3Month = 0;
@@ -75,12 +91,12 @@ class HNO3Controller extends Controller
 
         if($start == null || $end == null)
         {
-            $start = date('Y-m-d h:i:s');
-            $end = date('Y-m-d h:i:s');
+            $start = date('Y-m-d');
+            $end = date('Y-m-d');
         }
 
-        $HNO3 = HNO3::where('date_time', '<=' , $end)
-                  ->where('date_time', '>=' , $start)->get();
+        $HNO3 = HNO3::where('date_time', '>=' , $start.' 00:00:00')
+                  ->where('date_time', '<=' , $end.' 23:59:59')->get();
 
         $data = [
             'HNO3' => $HNO3
@@ -150,7 +166,13 @@ class HNO3Controller extends Controller
 
     public function setSpecPage()
     {
-        return view('hno3spec');
+        $HNO3Spec = HNO3Spec::firstOrFail();
+
+        $data = [
+            'top' => $HNO3Spec->top,
+            'bottom' => $HNO3Spec->bottom,
+        ];
+        return view('hno3spec')->with('DATA', $data);
     }
 
     public function submitSpec(Request $req)
@@ -166,7 +188,9 @@ class HNO3Controller extends Controller
     // 預測
     public function settingPage()
     {
-        return view('hno3setting');
+        $HNO3ParaSetting = HNO3ParaSetting::firstOrFail();
+
+        return view('hno3setting')->with('DATA', $HNO3ParaSetting);
     }
 
     public function passSettingPara(Request $req)

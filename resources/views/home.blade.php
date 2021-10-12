@@ -5,12 +5,17 @@
 
 <form method="GET" action="/home/filter" style="padding: 10px">
     <div class="form-group row">
-        <input id="user-name" class="form-control" name="user-name" type="text" placeholder="Name">
+        <input id="user-name" class="form-control" name="user-name" type="text" placeholder="請輸入姓名">
     </div>
     <div class="form-group row">
     <select id="user-status" class="form-control" name="user-status">
         @foreach ($data['status'] as $status)
-        <option value="{{$status}}">{{$status}}</option>
+        @if ($status == 'ok')
+        <option value="{{$status}}">啟用</option>
+        @else
+        <option value="{{$status}}">停用</option>
+        @endif
+        
         @endforeach
     </select>
     </div>

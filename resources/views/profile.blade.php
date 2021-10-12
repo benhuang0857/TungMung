@@ -32,11 +32,11 @@
                 <label for="user-status">帳號狀態</label>
                 <select id="user-status" class="form-control" name="user-status">
                     @if ($data['status'] == 'ok')
-                    <option value="ok" selected>ok</option>
-                    <option value="ng">ng</option>
+                    <option value="ok" selected>啟用</option>
+                    <option value="ng">停用</option>
                     @else
-                    <option value="ok">ok</option>
-                    <option value="ng" selected>ng</option>
+                    <option value="ok">啟用</option>
+                    <option value="ng" selected>停用</option>
                     @endif
                 </select>
             </div>

@@ -8,11 +8,11 @@
         <form method="GET" action="{{route('setting_hno3spec')}}" style="padding: 10px">
             <div class="form-group row">
                 <label for="top">TOP Spec</label>
-                <input id="top" class="form-control" name="top" type="text" placeholder="Top Spec">
+                <input id="top" class="form-control" name="top" value="{{$DATA['top']}}" type="text" placeholder="Top Spec">
             </div>
             <div class="form-group row">
                 <label for="bottom">Bottom Spec</label>
-                <input id="bottom" class="form-control" name="bottom" type="text" placeholder="Bottom Spec">
+                <input id="bottom" class="form-control" name="bottom" value="{{$DATA['bottom']}}" type="text" placeholder="Bottom Spec">
             </div>
             <div class="form-group row">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">送出</button>

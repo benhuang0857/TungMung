@@ -57,16 +57,24 @@
                 @auth
                 <div class="col-sm-3">
                     <ul class="nav flex-column side-bar">
-                        <li class="nav-item" id="home"><a class="dropdown-item" href="{{ route('home') }}">管理用戶</a></li>
-                        <li class="nav-item" id="user"><a class="dropdown-item" href="{{ route('cuserpage') }}">創建用戶</a></li>
-                        <li class="nav-item" id="hno3"><a class="dropdown-item" href="{{ route('hno3') }}">HNO3</a></li>
+                        <li class="nav-item" id="member_toggle_sw"><a class="dropdown-item" href="#">管理用戶</a></li>
+                        <ul class="nav-item" id="member_toggle">
+                            <li class="nav-item" id="home"><a class="dropdown-item" href="{{ route('home') }}">所有用戶</a></li>
+                            <li class="nav-item" id="user"><a class="dropdown-item" href="{{ route('cuserpage') }}">創建用戶</a></li>
+                        </ul>
+                            <li class="nav-item" id="hno3"><a class="dropdown-item" href="{{ route('hno3') }}">HNO3</a></li>
                         <li class="nav-item" id="hf"><a class="dropdown-item" href="{{ route('hf') }}">HF</a></li>
                         <li class="nav-item" id="brushrollerelectricity"><a class="dropdown-item" href="{{ route('brushrollerelectricity') }}">刷輥電流</a></li>
-                        <li class="nav-item" id="no3_setting"><a class="dropdown-item" href="{{ route('no3_setting') }}">濃度公式參數設定</a></li>
-                        <li class="nav-item" id="hno3_predict"><a class="dropdown-item" href="{{ route('hno3_predict') }}">HNO3濃度預測圖</a></li>
-                        <li class="nav-item" id="hno3_predict_8h"><a class="dropdown-item" href="/hno3_predict_8h?C0=0&tanknum=tank11">HNO3區間濃度預估</a></li>
-                        <li class="nav-item" id="hf_predict"><a class="dropdown-item" href="{{ route('hf_predict') }}">HF濃度預測圖</a></li>
-                        <li class="nav-item" id="hf_predict_8h"><a class="dropdown-item" href="/hf_predict_8h?C0=0&tanknum=tank11">HF區間濃度預估</a></li>
+                        
+                        <li class="nav-item" id="predict_toggle_sw"><a class="dropdown-item" href="#">濃度公式</a></li>
+                        <ul class="nav-item" id="predict_toggle">
+                            <li class="nav-item" id="no3_setting"><a class="dropdown-item" href="{{ route('no3_setting') }}">濃度公式參數設定</a></li>
+                            <li class="nav-item" id="hno3_predict"><a class="dropdown-item" href="{{ route('hno3_predict') }}">HNO3濃度預測圖</a></li>
+                            <li class="nav-item" id="hno3_predict_8h"><a class="dropdown-item" href="/hno3_predict_8h?C0=0&tanknum=tank11">HNO3區間濃度預估</a></li>
+                            <li class="nav-item" id="hf_predict"><a class="dropdown-item" href="{{ route('hf_predict') }}">HF濃度預測圖</a></li>
+                            <li class="nav-item" id="hf_predict_8h"><a class="dropdown-item" href="/hf_predict_8h?C0=0&tanknum=tank11">HF區間濃度預估</a></li>
+                        </ul>
+                        
                     </ul>
                 </div>
                 @endauth
@@ -139,6 +147,16 @@
             XLSX.write(wb, { bookType: type, bookSST: true, type: 'text' }):
             XLSX.writeFile(wb, fn || ('DATA.' + (type || 'xlsx')));
         }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $("#predict_toggle_sw").click(function(){
+            $("#predict_toggle").toggle('normal');
+        });
+        $("#member_toggle_sw").click(function(){
+            $("#member_toggle").toggle('normal');
+        })
+        
     </script>
 </body>
 </html>

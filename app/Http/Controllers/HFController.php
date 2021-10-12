@@ -38,9 +38,18 @@ class HFController extends Controller
 
         foreach($HF as $item)
         {
-            array_push($resultData, $item->HF);
             array_push($resultTimeLabe, $item->datetime);
         }
+
+        $j = 0;
+        for($i=1; $i < sizeof($HF); $i++)
+        {
+            array_push($resultData, abs($HF[$i]->HF - $HF[$j]->HF));
+            $j++;
+        }
+
+        array_shift($resultData);
+        array_shift($resultTimeLabe);
 
         //當月累積
         $resultHFMonth = 0;
@@ -74,12 +83,12 @@ class HFController extends Controller
 
         if($start == null || $end == null)
         {
-            $start = date('Y-m-d h:i:s');
-            $end = date('Y-m-d h:i:s');
+            $start = date('Y-m-d');
+            $end = date('Y-m-d');
         }
 
-        $HF = HF::where('datetime', '<=' , $end)
-                  ->where('datetime', '>=' , $start)->get();
+        $HF = HF::where('datetime', '>=' , $start.' 00:00:00')
+                  ->where('datetime', '<=' , $end.' 23:59:59')->get();
 
         $data = [
             'HF' => $HF
@@ -148,7 +157,14 @@ class HFController extends Controller
 
     public function setSpecPage()
     {
-        return view('hfspec');
+        $HFSpec = HFSpec::firstOrFail();
+
+        $data = [
+            'top' => $HFSpec->top,
+            'bottom' => $HFSpec->bottom,
+        ];
+
+        return view('hfspec')->with('DATA', $data);
     }
 
     public function submitSpec(Request $req)
