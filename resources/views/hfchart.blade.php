@@ -15,10 +15,14 @@
             <div class="form-group row">
                 <label for="chart_type">選擇區間</label>
                 <select id="chart_type" class="form-control" name="chart_type">
+                    <option value="year">今年度</option>
                     <option value="day">當日</option>
                     <option value="month">當月</option>
-                    <option value="year">今年度</option>
                 </select>
+            </div>
+            <div class="form-group row">
+                <label for="The_Date">選擇時間:</label>
+                <input type="text" id="The_Date" name="The_Date" class="form-control">
             </div>
             <div class="form-group row">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">篩選</button>
@@ -117,4 +121,21 @@
     }
 
 </script>
+
+<script>
+    var target = $('#chart_type option:selected').val();
+
+    $('#chart_type').change(function(){
+        if($(this).val() == 'day'){
+            $('#The_Date').prop('type', 'date');
+        }
+        if($(this).val() == 'month'){
+            $('#The_Date').prop('type', 'month');
+        }
+        if($(this).val() == 'year'){
+            $('#The_Date').prop('type', 'text');
+        }
+    });
+</script>
+
 @endsection

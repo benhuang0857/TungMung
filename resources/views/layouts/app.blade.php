@@ -62,11 +62,11 @@
                             <li class="nav-item" id="home"><a class="dropdown-item" href="{{ route('home') }}">所有用戶</a></li>
                             <li class="nav-item" id="user"><a class="dropdown-item" href="{{ route('cuserpage') }}">創建用戶</a></li>
                         </ul>
-                            <li class="nav-item" id="hno3"><a class="dropdown-item" href="{{ route('hno3') }}">HNO3</a></li>
-                        <li class="nav-item" id="hf"><a class="dropdown-item" href="{{ route('hf') }}">HF</a></li>
-                        <li class="nav-item" id="brushrollerelectricity"><a class="dropdown-item" href="{{ route('brushrollerelectricity') }}">刷輥電流</a></li>
+                            <li class="nav-item" id="hno3"><a class="dropdown-item" href="{{ route('hno3') }}">HNO3流量監管</a></li>
+                        <li class="nav-item" id="hf"><a class="dropdown-item" href="{{ route('hf') }}">HF流量監管</a></li>
+                        <li class="nav-item" id="brushrollerelectricity"><a class="dropdown-item" href="{{ route('brushrollerelectricity') }}">刷輥電流監管</a></li>
                         
-                        <li class="nav-item" id="predict_toggle_sw"><a class="dropdown-item" href="#">濃度公式</a></li>
+                        <li class="nav-item" id="predict_toggle_sw"><a class="dropdown-item" href="#">濃度預測分析</a></li>
                         <ul class="nav-item" id="predict_toggle">
                             <li class="nav-item" id="no3_setting"><a class="dropdown-item" href="{{ route('no3_setting') }}">濃度公式參數設定</a></li>
                             <li class="nav-item" id="hno3_predict"><a class="dropdown-item" href="{{ route('hno3_predict') }}">HNO3濃度預測圖</a></li>

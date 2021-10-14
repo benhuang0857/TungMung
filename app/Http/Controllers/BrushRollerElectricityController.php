@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\ConverterView;
+use App\ElectricitySpec;
 use DB;
 
 class BrushRollerElectricityController extends Controller
@@ -18,6 +19,8 @@ class BrushRollerElectricityController extends Controller
     {
         $ConverterView = ConverterView::where('date_time', '<=' , date('y-m-d', strtotime('+2 days')))
                     ->where('date_time', '>=' , date('y-m-d', strtotime('+0 days')))->get();
+
+        $spec   = ElectricitySpec::orderBy('created_at', 'desc')->first();
 
         $ConverterViewLast = ConverterView::first();
 
@@ -48,9 +51,62 @@ class BrushRollerElectricityController extends Controller
             'Converter4'     => json_encode($resultData04),
             'Converter5'     => json_encode($resultData05),
             'Converter6'     => json_encode($resultData06),
-            'TLable'         => json_encode($resultTimeLabe)
+            'TLable'         => json_encode($resultTimeLabe),
+            'Spec'           => $spec
         ];
 
         return view('BrushRollerElectricity')->with('DATA', $data);
+    }
+
+    public function showReportDay(Request $req)
+    {
+        $start = $req->start;
+        $end = $req->end;
+
+        if($start == null || $end == null)
+        {
+            $start = date('Y-m-d');
+            $end = date('Y-m-d');
+        }
+
+        $Electricity = ConverterView::where('date_time', '>=' , $start.' 00:00:00')
+                  ->where('date_time', '<=' , $end.' 23:59:59')->get();
+
+        $data = [
+            'Electricity' => $Electricity
+        ];
+        return view('BrushRollerElectricityreport')->with('DATA', $data);
+    }
+
+    public function setSpecPage()
+    {
+        $ELESpec = DB::table('electricity_spec')->orderBy('created_at', 'desc')->first();
+
+        if($ELESpec != null)
+        {
+            $data = [
+                'top' => $ELESpec->top,
+                'bottom' => $ELESpec->bottom,
+            ];
+        }
+        else
+        {
+            $data = [
+                'top' => 0,
+                'bottom' => 0,
+            ];
+        }
+        
+        return view('electricityspec')->with('DATA', $data);
+    }
+
+    public function submitSpec(Request $req)
+    {
+        $ELESpec = new ElectricitySpec;
+        $ELESpec->top = $req->input('top');
+        $ELESpec->bottom = $req->input('bottom');
+        $ELESpec->save();
+        
+        return redirect()->back();
     }
 }

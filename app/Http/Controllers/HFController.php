@@ -98,16 +98,18 @@ class HFController extends Controller
 
     public function showChart(Request $req)
     {
+
         $spec     = HFSpec::orderBy('created_at', 'desc')->first();
         $resultData = array();
         $resultTimeLabe = array();
         
-        $chartType = $req->chart_type;
+        $chartType  = $req->chart_type;
+        $theDay     = $req->The_Date;
 
         if($chartType == 'day')
         {
-            $HF = HF::where('datetime', '<=' , date('y-m-d', strtotime('+2 days')))
-            ->where('datetime', '>=' , date('y-m-d', strtotime('+0 days')))->get();
+            $HF = HF::where('datetime', '<=' , $theDay.' 23:59:59')
+            ->where('datetime', '>=' ,  $theDay.' 00:00:00')->get();
 
             foreach($HF as $item)
             {
@@ -117,8 +119,8 @@ class HFController extends Controller
         }
         elseif($chartType == 'month')
         {
-            $HF = HFDaily::where('Day', '<', date("Y-m-t", strtotime(date("Y-m-d"))) )
-            ->where('Day', '>=', date("Y-m-01", strtotime(date("Y-m-d"))) )->get();
+            $HF = HFDaily::where('Day', '<', $theDay.'-31' )
+            ->where('Day', '>=', $theDay.'-1' )->get();
 
             foreach($HF as $item)
             {
@@ -157,12 +159,22 @@ class HFController extends Controller
 
     public function setSpecPage()
     {
-        $HFSpec = HFSpec::firstOrFail();
+        $HFSpec = DB::table('hf_spec')->orderBy('created_at', 'desc')->first();
 
-        $data = [
-            'top' => $HFSpec->top,
-            'bottom' => $HFSpec->bottom,
-        ];
+        if($HFSpec != null)
+        {
+            $data = [
+                'top' => $HFSpec->top,
+                'bottom' => $HFSpec->bottom,
+            ];
+        }
+        else
+        {
+            $data = [
+                'top' => 0,
+                'bottom' => 0,
+            ];
+        }
 
         return view('hfspec')->with('DATA', $data);
     }

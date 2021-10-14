@@ -40,6 +40,9 @@ Route::get('/hf/showchart', 'HFController@showChart')->name('hfshowchart');
 
 Route::get('/concentration', 'ConcentrationController@index')->name('concentration');
 Route::get('/brushrollerelectricity', 'BrushRollerElectricityController@index')->name('brushrollerelectricity');
+Route::get('/elespec', 'BrushRollerElectricityController@setSpecPage')->name('elespec');
+Route::get('/elespec/submit', 'BrushRollerElectricityController@submitSpec')->name('setting_elespec');
+Route::get('/brushrollerelectricity_report', 'BrushRollerElectricityController@showReportDay')->name('brushrollerelectricity_report');
 
 Route::get('/no3_setting', 'HNO3Controller@settingPage')->name('no3_setting');
 Route::get('/no3_setting/pass', 'HNO3Controller@passSettingPara')->name('no3_setting_pass');

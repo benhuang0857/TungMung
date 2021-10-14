@@ -110,12 +110,13 @@ class HNO3Controller extends Controller
         $resultData = array();
         $resultTimeLabe = array();
         
-        $chartType = $req->chart_type;
+        $chartType  = $req->chart_type;
+        $theDay     = $req->The_Date;
 
         if($chartType == 'day')
         {
-            $HNO3 = HNO3::where('date_time', '<=' , date('y-m-d', strtotime('+2 days')))
-            ->where('date_time', '>=' , date('y-m-d', strtotime('+0 days')))->get();
+            $HNO3 = HNO3::where('date_time', '<=' , $theDay.' 23:59:59')
+            ->where('date_time', '>=' , $theDay.' 00:00:00')->get();
 
             foreach($HNO3 as $item)
             {
@@ -125,8 +126,8 @@ class HNO3Controller extends Controller
         }
         elseif($chartType == 'month')
         {
-            $HNO3 = HNO3Daily::where('Day', '<', date("Y-m-t", strtotime(date("Y-m-d"))) )
-            ->where('Day', '>=', date("Y-m-01", strtotime(date("Y-m-d"))) )->get();
+            $HNO3 = HNO3Daily::where('Day', '<', $theDay.'-31' )
+            ->where('Day', '>=', $theDay.'-1'  )->get();
 
             foreach($HNO3 as $item)
             {
@@ -166,12 +167,24 @@ class HNO3Controller extends Controller
 
     public function setSpecPage()
     {
-        $HNO3Spec = HNO3Spec::firstOrFail();
+        //$HNO3Spec = HNO3Spec::firstOrFail();
 
-        $data = [
-            'top' => $HNO3Spec->top,
-            'bottom' => $HNO3Spec->bottom,
-        ];
+        $HNO3Spec = DB::table('hno3_spec')->orderBy('created_at', 'desc')->first();
+        if($HNO3Spec != null)
+        {
+            $data = [
+                'top' => $HNO3Spec->top,
+                'bottom' => $HNO3Spec->bottom,
+            ];
+        }
+        else
+        {
+            $data = [
+                'top' => 0,
+                'bottom' => 0,
+            ];
+        }
+
         return view('hno3spec')->with('DATA', $data);
     }
 
@@ -188,7 +201,11 @@ class HNO3Controller extends Controller
     // 預測
     public function settingPage()
     {
-        $HNO3ParaSetting = HNO3ParaSetting::firstOrFail();
+        //$HNO3ParaSetting = HNO3ParaSetting::firstOrFail();
+
+        $HNO3ParaSetting = DB::table('hno3_paraset')->orderBy('created_at', 'desc')->first();
+
+        //dd($HNO3ParaSetting);
 
         return view('hno3setting')->with('DATA', $HNO3ParaSetting);
     }
