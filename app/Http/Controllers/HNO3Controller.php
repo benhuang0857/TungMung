@@ -237,6 +237,8 @@ class HNO3Controller extends Controller
         $HNO3C0 = HNO3C0::orderBy('created_at', 'desc')->first();
         $Tank = Tank::orderBy('create_date', 'desc')->first();
 
+        //dd($Tank);
+
         //設定第一次的C0
         $tank11C0 = 0;
         $tank12C0 = 0;
@@ -305,31 +307,43 @@ class HNO3Controller extends Controller
         $tank12_C1 = round($tank12_C1, 2);
         $tank22_C1 = round($tank22_C1, 2);
         
-        if($Tank->tank11_hno3 == null)
+        if($Tank->tank11_hno3 == 0)
         {
-            HNO3C0::create([
+            return HNO3C0::create([
                 'tank11C0' => 0,
                 'tank12C0' => $tank12_C1,
                 'tank22C0' => $tank22_C1,
             ]);
+
+            
         }
-        if($Tank->tank12_hno3 == null)
+        if($Tank->tank12_hno3 == 0)
         {
-            HNO3C0::create([
+            return HNO3C0::create([
                 'tank11C0' => $tank11_C1,
                 'tank12C0' => 0,
                 'tank22C0' => $tank22_C1,
             ]);
+
+            
         }
-        if($Tank->tank22_hno3 == null)
+        if($Tank->tank22_hno3 == 0)
         {
-            HNO3C0::create([
+            return HNO3C0::create([
                 'tank11C0' => $tank11_C1,
                 'tank12C0' => $tank12_C1,
                 'tank22C0' => 0,
             ]);
         }
-        
+
+        // if($Tank->tank12_hno3 !=null && $Tank->tank22_hno3 !=null && $Tank->tank22_hno3 !=null)
+        // {
+        //     HNO3C0::create([
+        //         'tank11C0' => $tank11_C1,
+        //         'tank12C0' => $tank12_C1,
+        //         'tank22C0' => $tank22_C1,
+        //     ]);
+        // }
     }
 
     public function predictPage()

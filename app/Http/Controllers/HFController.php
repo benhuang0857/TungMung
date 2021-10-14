@@ -290,30 +290,38 @@ class HFController extends Controller
         $tank12_C1 = round($tank12_C1, 2);
         $tank22_C1 = round($tank22_C1, 2);
         
-        if($Tank->tank11_hno3 == null)
+        if($Tank->tank11_hno3 == 0)
         {
-            HFC0::create([
+            return HFC0::create([
                 'tank11C0' => 0,
                 'tank12C0' => $tank12_C1,
                 'tank22C0' => $tank22_C1,
             ]);
         }
-        if($Tank->tank12_hno3 == null)
+        if($Tank->tank12_hno3 == 0)
         {
-            HFC0::create([
+            return HFC0::create([
                 'tank11C0' => $tank11_C1,
                 'tank12C0' => 0,
                 'tank22C0' => $tank22_C1,
             ]);
         }
-        if($Tank->tank22_hno3 == null)
+        if($Tank->tank22_hno3 == 0)
         {
-            HFC0::create([
+            return HFC0::create([
                 'tank11C0' => $tank11_C1,
                 'tank12C0' => $tank12_C1,
                 'tank22C0' => 0,
             ]);
         }
+        // if($Tank->tank12_hno3 !=null && $Tank->tank22_hno3 !=null && $Tank->tank22_hno3 !=null)
+        // {
+        //     HNO3C0::create([
+        //         'tank11C0' => $tank11_C1,
+        //         'tank12C0' => $tank12_C1,
+        //         'tank22C0' => $tank22_C1,
+        //     ]);
+        // }
         
     }
 
