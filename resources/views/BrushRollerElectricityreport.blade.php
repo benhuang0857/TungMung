@@ -10,7 +10,7 @@
                 {{ session('status') }}
             </div>
         @endif
-        <form action="{{route('hf_repor')}}" method="GET"  style="padding: 15px">
+        <form action="{{route('brushrollerelectricity_report')}}" method="GET"  style="padding: 15px">
             <div class="form-group row">
                 <input type="date" class="form-control" id="date" name="start">
             </div>

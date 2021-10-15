@@ -15,14 +15,14 @@
             <div class="form-group row">
                 <label for="chart_type">選擇區間</label>
                 <select id="chart_type" class="form-control" name="chart_type">
-                    <option value="year">今年度</option>
+                    <option value="year">年度</option>
                     <option value="day">當日</option>
                     <option value="month">當月</option>
                 </select>
             </div>
             <div class="form-group row">
                 <label for="The_Date">選擇時間:</label>
-                <input type="text" id="The_Date" name="The_Date" class="form-control">
+                <input type="text" id="The_Date" name="The_Date" class="yearpicker form-control" size="4">
             </div>
             <div class="form-group row">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">篩選</button>
@@ -123,17 +123,25 @@
 </script>
 
 <script>
+    $(".yearpicker").yearpicker();
+    
     var target = $('#chart_type option:selected').val();
 
     $('#chart_type').change(function(){
         if($(this).val() == 'day'){
             $('#The_Date').prop('type', 'date');
+            $('#The_Date').removeClass('yearpicker');
+            $('.yearpicker-container').hide();
         }
         if($(this).val() == 'month'){
             $('#The_Date').prop('type', 'month');
+            $('#The_Date').removeClass('yearpicker');
+            $('.yearpicker-container').hide();
         }
         if($(this).val() == 'year'){
+            $('#The_Date').addClass('yearpicker');
             $('#The_Date').prop('type', 'text');
+            $('.yearpicker-container').show();
         }
     });
 </script>

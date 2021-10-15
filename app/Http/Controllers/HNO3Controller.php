@@ -137,18 +137,18 @@ class HNO3Controller extends Controller
         }
         else
         {
-            $HNO3_01 = HNO3Year::where('Month', '=', '1' )->get()->sum('HNO3');
-            $HNO3_02 = HNO3Year::where('Month', '=', '2' )->get()->sum('HNO3');
-            $HNO3_03 = HNO3Year::where('Month', '=', '3' )->get()->sum('HNO3');
-            $HNO3_04 = HNO3Year::where('Month', '=', '4' )->get()->sum('HNO3');
-            $HNO3_05 = HNO3Year::where('Month', '=', '5' )->get()->sum('HNO3');
-            $HNO3_06 = HNO3Year::where('Month', '=', '6' )->get()->sum('HNO3');
-            $HNO3_07 = HNO3Year::where('Month', '=', '7' )->get()->sum('HNO3');
-            $HNO3_08 = HNO3Year::where('Month', '=', '8' )->get()->sum('HNO3');
-            $HNO3_09 = HNO3Year::where('Month', '=', '9' )->get()->sum('HNO3');
-            $HNO3_10 = HNO3Year::where('Month', '=', '10' )->get()->sum('HNO3');
-            $HNO3_11 = HNO3Year::where('Month', '=', '11' )->get()->sum('HNO3');
-            $HNO3_12 = HNO3Year::where('Month', '=', '12' )->get()->sum('HNO3');
+            $HNO3_01 = HNO3Year::where('CON_TIME', 'like', '%'.$theDay.'%')->where('Month', '=', '1' )->get()->sum('HNO3');
+            $HNO3_02 = HNO3Year::where('CON_TIME', 'like', '%'.$theDay.'%')->where('Month', '=', '2' )->get()->sum('HNO3');
+            $HNO3_03 = HNO3Year::where('CON_TIME', 'like', '%'.$theDay.'%')->where('Month', '=', '3' )->get()->sum('HNO3');
+            $HNO3_04 = HNO3Year::where('CON_TIME', 'like', '%'.$theDay.'%')->where('Month', '=', '4' )->get()->sum('HNO3');
+            $HNO3_05 = HNO3Year::where('CON_TIME', 'like', '%'.$theDay.'%')->where('Month', '=', '5' )->get()->sum('HNO3');
+            $HNO3_06 = HNO3Year::where('CON_TIME', 'like', '%'.$theDay.'%')->where('Month', '=', '6' )->get()->sum('HNO3');
+            $HNO3_07 = HNO3Year::where('CON_TIME', 'like', '%'.$theDay.'%')->where('Month', '=', '7' )->get()->sum('HNO3');
+            $HNO3_08 = HNO3Year::where('CON_TIME', 'like', '%'.$theDay.'%')->where('Month', '=', '8' )->get()->sum('HNO3');
+            $HNO3_09 = HNO3Year::where('CON_TIME', 'like', '%'.$theDay.'%')->where('Month', '=', '9' )->get()->sum('HNO3');
+            $HNO3_10 = HNO3Year::where('CON_TIME', 'like', '%'.$theDay.'%')->where('Month', '=', '10' )->get()->sum('HNO3');
+            $HNO3_11 = HNO3Year::where('CON_TIME', 'like', '%'.$theDay.'%')->where('Month', '=', '11' )->get()->sum('HNO3');
+            $HNO3_12 = HNO3Year::where('CON_TIME', 'like', '%'.$theDay.'%')->where('Month', '=', '12' )->get()->sum('HNO3');
 
             $resultData     = [$HNO3_01, $HNO3_02, $HNO3_03, $HNO3_04, $HNO3_05, $HNO3_06,
                                $HNO3_07, $HNO3_08, $HNO3_09, $HNO3_10, $HNO3_11, $HNO3_12];
@@ -306,28 +306,24 @@ class HNO3Controller extends Controller
         $tank11_C1 = round($tank11_C1, 2);
         $tank12_C1 = round($tank12_C1, 2);
         $tank22_C1 = round($tank22_C1, 2);
-        
-        if($Tank->tank11_hno3 == 0)
+
+        if($Tank->tank11_hno3 == "null")
         {
             return HNO3C0::create([
                 'tank11C0' => 0,
                 'tank12C0' => $tank12_C1,
                 'tank22C0' => $tank22_C1,
             ]);
-
-            
         }
-        if($Tank->tank12_hno3 == 0)
+        if($Tank->tank12_hno3 == "null")
         {
             return HNO3C0::create([
                 'tank11C0' => $tank11_C1,
                 'tank12C0' => 0,
                 'tank22C0' => $tank22_C1,
             ]);
-
-            
         }
-        if($Tank->tank22_hno3 == 0)
+        if($Tank->tank22_hno3 == "null")
         {
             return HNO3C0::create([
                 'tank11C0' => $tank11_C1,
@@ -348,7 +344,8 @@ class HNO3Controller extends Controller
 
     public function predictPage()
     {
-        $HNO3C0 = HNO3C0::all();
+        $HNO3C0 = HNO3C0::where('created_at', '>=', date("Y-m-d").' 00:00:00')
+                        ->where('created_at', '<=', date("Y-m-d").' 23:59:59')->get();
 
         $Tank_Last = Tank::orderBy('create_date', 'desc')->first();
 
