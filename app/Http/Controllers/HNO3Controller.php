@@ -385,8 +385,8 @@ class HNO3Controller extends Controller
 
         // $HNO3 = HNO3C0::where('created_at', '<=' , $end)
         //           ->where('created_at', '>=' , $start)->get();
-        $HNO3 = HNO3C0::where('date_time', '>=' , $start.' 00:00:00')
-                  ->where('date_time', '<=' , $end.' 23:59:59')->get();
+        $HNO3 = HNO3C0::where('created_at', '>=' , $start.' 00:00:00')
+                  ->where('created_at', '<=' , $end.' 23:59:59')->get();
 
         $data = [
             'HNO3' => $HNO3
