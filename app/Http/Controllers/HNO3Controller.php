@@ -379,8 +379,8 @@ class HNO3Controller extends Controller
 
         if($start == null || $end == null)
         {
-            $start = date('Y-m-d h:i:s');
-            $end = date('Y-m-d h:i:s');
+            $start = date('Y-m-d');
+            $end = date('Y-m-d');
         }
 
         // $HNO3 = HNO3C0::where('created_at', '<=' , $end)
