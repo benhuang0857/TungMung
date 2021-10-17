@@ -362,12 +362,14 @@ class HFController extends Controller
 
         if($start == null || $end == null)
         {
-            $start = date('Y-m-d h:i:s');
-            $end = date('Y-m-d h:i:s');
+            $start = date('Y-m-d');
+            $end = date('Y-m-d');
         }
 
-        $HNO3 = HFC0::where('created_at', '<=' , $end)
-                  ->where('created_at', '>=' , $start)->get();
+        // $HNO3 = HFC0::where('created_at', '<=' , $end)
+        //           ->where('created_at', '>=' , $start)->get();
+        $HNO3 = HFC0::where('created_at', '>=' , $start.' 00:00:00')
+                  ->where('created_at', '<=' , $end.' 23:59:59')->get();
 
         $data = [
             'HNO3' => $HNO3
